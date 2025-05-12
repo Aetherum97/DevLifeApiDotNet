@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8B290487-4C16-E85E-E807-F579CBE9FC4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{22BAF98C-8415-17C4-B26A-D537657BC863}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9048EB7F-3875-A59E-E36B-5BD4C6F2A282}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{03997797-E7F5-0643-168D-B8EA7178C2FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{C8E42992-5E42-0C2B-DBFE-AA848D06431C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{0C88DD14-F956-CE84-757C-A364CCF449FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevLife.Web.Api", "Src\Web\DevLife.Web.Api\DevLife.Web.Api.csproj", "{FC73F5DC-BD10-4BC0-8C6A-3BF62BB6A1AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevLife.Infrastructure", "Src\Infrastructure\DevLife.Infrastructure\DevLife.Infrastructure.csproj", "{10EF442E-28C6-4B32-AC8F-95D7A5E782A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevLife.Domain", "Src\Domain\DevLife.Domain\DevLife.Domain.csproj", "{36B4F739-2985-45FB-B495-15DBD128F0B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevLife.Application", "Src\Application\DevLife.Application\DevLife.Application.csproj", "{6953F845-D3CC-4F7D-A17B-EBE0033CDB80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevLife.Infrastructure.Identity", "Src\Infrastructure\DevLife.Infrastructure.Identity\DevLife.Infrastructure.Identity.csproj", "{6DE9F8AD-0600-4DBE-BF24-BF4C11933E0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevLife.Shared", "Src\Shared\DevLife.Shared\DevLife.Shared.csproj", "{AEC6141A-ADD3-41DE-8330-960C8A2FDBB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC73F5DC-BD10-4BC0-8C6A-3BF62BB6A1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC73F5DC-BD10-4BC0-8C6A-3BF62BB6A1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC73F5DC-BD10-4BC0-8C6A-3BF62BB6A1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC73F5DC-BD10-4BC0-8C6A-3BF62BB6A1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10EF442E-28C6-4B32-AC8F-95D7A5E782A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10EF442E-28C6-4B32-AC8F-95D7A5E782A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10EF442E-28C6-4B32-AC8F-95D7A5E782A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10EF442E-28C6-4B32-AC8F-95D7A5E782A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B4F739-2985-45FB-B495-15DBD128F0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B4F739-2985-45FB-B495-15DBD128F0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B4F739-2985-45FB-B495-15DBD128F0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B4F739-2985-45FB-B495-15DBD128F0B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6953F845-D3CC-4F7D-A17B-EBE0033CDB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6953F845-D3CC-4F7D-A17B-EBE0033CDB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6953F845-D3CC-4F7D-A17B-EBE0033CDB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6953F845-D3CC-4F7D-A17B-EBE0033CDB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE9F8AD-0600-4DBE-BF24-BF4C11933E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE9F8AD-0600-4DBE-BF24-BF4C11933E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE9F8AD-0600-4DBE-BF24-BF4C11933E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE9F8AD-0600-4DBE-BF24-BF4C11933E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC6141A-ADD3-41DE-8330-960C8A2FDBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC6141A-ADD3-41DE-8330-960C8A2FDBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC6141A-ADD3-41DE-8330-960C8A2FDBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC6141A-ADD3-41DE-8330-960C8A2FDBB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B290487-4C16-E85E-E807-F579CBE9FC4D} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{22BAF98C-8415-17C4-B26A-D537657BC863} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{9048EB7F-3875-A59E-E36B-5BD4C6F2A282} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{03997797-E7F5-0643-168D-B8EA7178C2FE} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{C8E42992-5E42-0C2B-DBFE-AA848D06431C} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{FC73F5DC-BD10-4BC0-8C6A-3BF62BB6A1AB} = {03997797-E7F5-0643-168D-B8EA7178C2FE}
+		{10EF442E-28C6-4B32-AC8F-95D7A5E782A5} = {9048EB7F-3875-A59E-E36B-5BD4C6F2A282}
+		{36B4F739-2985-45FB-B495-15DBD128F0B3} = {8B290487-4C16-E85E-E807-F579CBE9FC4D}
+		{6953F845-D3CC-4F7D-A17B-EBE0033CDB80} = {22BAF98C-8415-17C4-B26A-D537657BC863}
+		{6DE9F8AD-0600-4DBE-BF24-BF4C11933E0D} = {9048EB7F-3875-A59E-E36B-5BD4C6F2A282}
+		{AEC6141A-ADD3-41DE-8330-960C8A2FDBB5} = {C8E42992-5E42-0C2B-DBFE-AA848D06431C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3ADF2F22-008B-4E0D-939C-914816070F10}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Src\Shared\DevLife.Shared\DevLife.Shared.projitems*{1cb9b19d-5434-47fe-b414-92d71990e9d1}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal
