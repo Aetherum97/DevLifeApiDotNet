@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DevLife.Shared.Pagination
+namespace DevLife.Web.Api.Commons.Services.Pagination
 {
     public class PaginationParameters
     {

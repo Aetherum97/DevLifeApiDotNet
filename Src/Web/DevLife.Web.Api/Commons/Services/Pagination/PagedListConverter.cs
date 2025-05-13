@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevLife.Shared.Pagination
+namespace DevLife.Web.Api.Commons.Services.Pagination
 {
     public class PagedListConverter<TSource, TDestination> where TDestination : new()
     {
