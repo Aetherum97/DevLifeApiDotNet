@@ -1,6 +1,7 @@
-﻿namespace DevLife.Infrastructure;
-
-public class Class1
+﻿namespace DevLife.Infrastructure
 {
+    public class Class1
+    {
 
+    }
 }

@@ -1,6 +1,7 @@
-﻿namespace DevLife.Domain;
-
-public class Class1
+﻿namespace DevLife.Domain
 {
+    public class Class1
+    {
 
+    }
 }

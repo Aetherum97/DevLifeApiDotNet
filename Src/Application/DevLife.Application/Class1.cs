@@ -1,6 +1,7 @@
-﻿namespace DevLife.Application;
-
-public class Class1
+﻿namespace DevLife.Application
 {
+    public class Class1
+    {
 
+    }
 }

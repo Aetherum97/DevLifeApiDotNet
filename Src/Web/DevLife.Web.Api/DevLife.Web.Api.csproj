@@ -18,4 +18,9 @@
     <ProjectReference Include="../../Shared/DevLife.Shared/DevLife.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commons/" />
+    <Folder Include="Commons/services/" />
+  </ItemGroup>
+
 </Project>

@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Commons/" />
+    <Folder Include="Modules/" />
+    <Folder Include="Modules/Auth/" />
+    <Folder Include="Modules/Auth/Entity/" />
+    <Folder Include="Modules/Auth/Exeptions/" />
+  </ItemGroup>
+
 </Project>

@@ -11,4 +11,16 @@
     <ProjectReference Include="../../Shared/DevLife.Shared/DevLife.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commons/" />
+    <Folder Include="Modules/" />
+    <Folder Include="Modules/Auth/" />
+    <Folder Include="Modules/Auth/DTOs/" />
+    <Folder Include="Modules/Auth/Interfaces/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.2.3" />
+  </ItemGroup>
+
 </Project>

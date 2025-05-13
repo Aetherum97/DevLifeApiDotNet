@@ -1,44 +1,60 @@
+using DevLife.Infrastructure.Identity;
+using DevLife.Infrastructure.Identity.Entity;
+using DevLife.Infrastructure.Identity.Persistence.Contexts;
+using DevLife.Infrastructure.Identity.Persistence.Seeds;
+using DevLife.Web.Api.Commons.Extenssions;
+using DevLife.Web.Api.Commons.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+bool useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryDatabase");
+
+builder.Services.AddIdentityInfrastructure(builder.Configuration, useInMemoryDatabase);
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerExtensions();
+builder.Services.AddCorsExtenssions();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var services = scope.ServiceProvider;
+
+    if (!useInMemoryDatabase)
+    {
+        var identityDb = services.GetRequiredService<AppIdentityDbContext>();
+        // var appDb = services.GetRequiredService<AppDbContext>();
+
+        await DatabaseHelper.EnsureDatabaseReadyAsync(identityDb);
+        // await DatabaseHelper.EnsureDatabaseReadyAsync(appDb);
+
+        if ((await identityDb.Database.GetPendingMigrationsAsync()).Any())
+
+            await identityDb.Database.MigrateAsync();
+
+        // if ((await appDb.Database.GetPendingMigrationsAsync()).Any())
+        //     await appDb.Database.MigrateAsync();
+    }
+
+    var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
+    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+
+    await DefaultRole.SeedAsync(roleManager);
+    await DefaultUser.SeedAsync(userManager);
 }
 
+app.UseDevelopementCors();
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseSwaggerExtensions();
+app.MapControllers();
 
 await app.RunAsync();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
