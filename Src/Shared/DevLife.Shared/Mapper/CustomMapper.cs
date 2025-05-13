@@ -56,7 +56,12 @@ namespace DevLife.Shared.Mapper
                     targetProp.SetValue(targetInstance, convertedValue);
                     continue;
                 }
-                catch { }
+                catch (MappingException ex)
+                {
+                    throw new MappingException($"Error mapping property '{targetProp.Name}' from '{sourceType.Name}' to '{targetType.Name}'", ex);
+                }
+                catch (InvalidCastException)
+                {}
 
                 if (typeof(IEnumerable).IsAssignableFrom(targetPropType) && targetPropType.IsGenericType && sourcePropType.IsGenericType)
                 {
