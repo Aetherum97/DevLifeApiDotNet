@@ -13,7 +13,6 @@ public class Company : AuditableBaseEntity
     // Relations
     public Player? Player { get; set; }
     public ICollection<Employee>? Employees { get; set; }
-    
     public ICollection<MaterialCompany>? MaterialCompany { get; set; }
 
 }
