@@ -7,8 +7,8 @@ public class CompanyContract : AuditableBaseEntity
 {
     public required Guid IdCompany { get; set; }
     public required Guid IdContract { get; set; }
-    public required DateTime Deadline { get; set; }
-    public required DateTime StartDate { get; set; }
+    public DateTime? Deadline { get; set; }
+    public DateTime? StartDate { get; set; }
     public bool? IsAccepted { get; set; }
     public bool? IsCompleted { get; set; }
     public int? Progress { get; set; }

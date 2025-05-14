@@ -32,6 +32,8 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
                 .WithMany(ms => ms.Materials)
                 .HasForeignKey(m => m.IdMaterialSkill)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            //TODO: Add MaterialCompany Relation
         }
     }
 }
