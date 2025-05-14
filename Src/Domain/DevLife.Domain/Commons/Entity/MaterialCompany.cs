@@ -5,6 +5,12 @@ namespace DevLife.Domain.Commons.Entity;
 
 public class MaterialCompany : AuditableBaseEntity
 {
-    //public required Employee IdEmployee { get; set; }
-    public required Material IdMaterial { get; set; }
+    public required Guid IdEmployee { get; set; }
+    public required Guid IdCompany { get; set; }
+    public required Guid IdMaterial { get; set; }
+
+    // Relation
+    public Company? Company { get; set; }
+    public Employee? Employee { get; set; }
+    public Material? Material { get; set; }
 }

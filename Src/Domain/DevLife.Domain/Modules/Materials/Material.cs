@@ -10,4 +10,6 @@ public class Material : AuditableBaseEntity
     public required string Description { get; set; }
     public required string ImageUrl { get; set; }
 
+    //Relation
+    public ICollection<MaterialSkill>? MaterialSkills { get; set; }
 }
