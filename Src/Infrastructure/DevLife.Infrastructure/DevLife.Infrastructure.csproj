@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Modules\Companies\**" />
+    <EmbeddedResource Remove="Modules\Companies\**" />
+    <None Remove="Modules\Companies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="../../Application/DevLife.Application/DevLife.Application.csproj" />
     <ProjectReference Include="../../Shared/DevLife.Shared/DevLife.Shared.csproj" />
   </ItemGroup>

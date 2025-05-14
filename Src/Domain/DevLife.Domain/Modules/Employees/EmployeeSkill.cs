@@ -11,7 +11,7 @@ public class EmployeeSkill : AuditableBaseEntity
 
     // Relation
     public ICollection<Employee>?  Employees {get; set;}
-    public ICollection<SkillModificator>? SkillModificators {get; set;}
+    public ICollection<EmployeeSkillModificator>? SkillModificators {get; set;}
 
 
 }
