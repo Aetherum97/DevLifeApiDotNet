@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DevLife.Application.Commons.Interfaces.Repositories;
+using DevLife.Domain.Modules.Materials;
+using DevLife.Infrastructure.Commons.Bases;
+using DevLife.Infrastructure.Persistence.Contexts;
 
 namespace DevLife.Infrastructure.Modules.Materials.Repositories
 {
-    public class MaterialRepository
+    public sealed class MaterialRepository(AppDbContext context) : BaseRepository<Material>(context), IMaterialRepository
     {
     }
 }

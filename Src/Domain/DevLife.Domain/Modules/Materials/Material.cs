@@ -1,4 +1,5 @@
 using DevLife.Domain.Commons.Bases;
+using DevLife.Domain.Commons.Entity;
 
 namespace DevLife.Domain.Modules.Materials;
 
@@ -13,4 +14,5 @@ public class Material : AuditableBaseEntity
     //Relation
     public MaterialSkill? MaterialSkill { get; set; }
 
+    public ICollection<MaterialCompany>? MaterialCompany { get; set; }
 }
