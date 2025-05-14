@@ -31,7 +31,6 @@ namespace DevLife.Infrastructure.Commons.Configurations
                 .HasForeignKey(mc => mc.IdMaterial)
                 .OnDelete(DeleteBehavior.Cascade);
 
-
         }
     }
 }
