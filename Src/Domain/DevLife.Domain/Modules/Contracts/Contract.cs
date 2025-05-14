@@ -1,0 +1,10 @@
+using DevLife.Domain.Commons.Bases;
+namespace DevLife.Domain.Modules.Contracts;
+
+public class Contract : AuditableBaseEntity
+{
+    public required ContractType IdType { get; set; }
+    public required string Title { get; set; }
+    public required string ImageUrl { get; set; }
+    public required string Description { get; set; }
+}
