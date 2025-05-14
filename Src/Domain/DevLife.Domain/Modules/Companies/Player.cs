@@ -8,8 +8,8 @@ public class Player : AuditableBaseEntity
 {
     public required string PlayerName { get; set; }
     public required bool IsTutorialFinished { get; set; }
+    public Guid UserId { get; set; }
 
     // Relation
-    public required Guid UserId { get; set; }
     public required Company Compagny { get; set; }
 }

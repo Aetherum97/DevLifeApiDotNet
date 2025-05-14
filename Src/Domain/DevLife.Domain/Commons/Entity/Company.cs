@@ -12,6 +12,7 @@ public class Company : AuditableBaseEntity
 
     // relations
     public Player? Player { get; set; }
+    public ICollection<Employee>? Employees { get; set; }
     // TODO relation with material_company
 
 }
