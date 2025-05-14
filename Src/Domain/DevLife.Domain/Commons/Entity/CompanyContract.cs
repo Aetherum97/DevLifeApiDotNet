@@ -5,7 +5,7 @@ namespace DevLife.Domain.Commons.Entity;
 
 public class CompanyContract : AuditableBaseEntity
 {
-    //public required Company IdCompany { get; set; }
+    public required Company IdCompany { get; set; }
     public required Contract IdContract { get; set; }
     public required DateTime deadline { get; set; }
     public required DateTime startDate { get; set; }
