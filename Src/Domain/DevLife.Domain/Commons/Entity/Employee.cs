@@ -23,6 +23,7 @@ public class Employee : AuditableBaseEntity
     public Company? Company { get; set; }
     public EmployeeName? EmployeeName {get; set;}
     public ICollection<EmployeeSkill>? EmployeeSkills {get; set;}
-    // TODO contract and material relation
+    public ICollection<CompanyContract>? CompanyContracts { get; set; }
+    public ICollection<MaterialCompany>? MaterialsCompany { get; set; }
 
 }

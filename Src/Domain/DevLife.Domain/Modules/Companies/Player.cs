@@ -12,4 +12,5 @@ public class Player : AuditableBaseEntity
 
     // Relation
     public required Company Compagny { get; set; }
+
 }

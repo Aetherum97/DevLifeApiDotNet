@@ -6,13 +6,13 @@ namespace DevLife.Domain.Commons.Entity;
 
 public class Company : AuditableBaseEntity
 {
-
     public required string Name { get; set; }
     public required int Experience { get; set; }
 
-    // relations
+    // Relations
     public Player? Player { get; set; }
     public ICollection<Employee>? Employees { get; set; }
-    // TODO relation with material_company
+    
+    public ICollection<MaterialCompany>? MaterialCompany { get; set; }
 
 }

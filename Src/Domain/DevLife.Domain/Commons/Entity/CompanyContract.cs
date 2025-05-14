@@ -17,5 +17,6 @@ public class CompanyContract : AuditableBaseEntity
     //Relation
     public Company? Company { get; set; }
     public Contract? Contract { get; set; }
+    public ICollection<Employee>? Employees { get; set; }
 
 }
