@@ -11,4 +11,7 @@ public class CompanyEmployee
 
     public Guid CompanyId { get; set; }
     public Company? Company { get; set; }
+
+    public ICollection<CompanyContractEmployee>? ContractAssignments { get; set; }
+    public ICollection<CompanyMaterialEmployee>? MaterialAssignments { get; set; }
 }
