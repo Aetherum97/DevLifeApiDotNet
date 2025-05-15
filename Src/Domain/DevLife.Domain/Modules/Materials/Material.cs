@@ -13,5 +13,5 @@ public class Material : AuditableBaseEntity
 
     // Relation
     public ICollection<CompanyMaterialEmployee>? CompanyMaterialEmployees { get; set; }
-    public MaterialTemplate? MaterialType { get; set; }
+    public MaterialTemplate? MaterialTemplate { get; set; }
 }

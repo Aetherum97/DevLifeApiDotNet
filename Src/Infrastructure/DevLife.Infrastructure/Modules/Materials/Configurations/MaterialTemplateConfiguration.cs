@@ -13,7 +13,6 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
     {
         public void Configure(EntityTypeBuilder<MaterialTemplate> builder)
         {
-            builder.ToTable("Material");
             builder.HasKey(m => m.Id);
             builder.Property(m => m.IdMaterialSkill)
                 .IsRequired()
@@ -32,8 +31,6 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
                 .WithMany(ms => ms.Materials)
                 .HasForeignKey(m => m.IdMaterialSkill)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            //TODO: Add MaterialCompany Relation
         }
     }
 }

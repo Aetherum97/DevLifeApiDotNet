@@ -13,7 +13,6 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
     {
         public void Configure(EntityTypeBuilder<MaterialSkill> builder)
         {
-            builder.ToTable("MaterialSkill");
             builder.HasKey(ms => ms.Id);
             builder.Property(ms => ms.Name)
                 .IsRequired()
