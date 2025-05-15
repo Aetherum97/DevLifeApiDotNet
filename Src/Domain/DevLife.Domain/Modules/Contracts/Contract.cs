@@ -1,13 +1,23 @@
 using DevLife.Domain.Commons.Bases;
+using DevLife.Domain.Commons.Entity;
+using DevLife.Domain.Modules.Companies;
+
 namespace DevLife.Domain.Modules.Contracts;
 
 public class Contract : AuditableBaseEntity
 {
-    public required Guid IdType { get; set; }
-    public required string Title { get; set; }
-    public required string ImageUrl { get; set; }
-    public required string Description { get; set; }
+    public required Guid IdCompany { get; set; }
+    public required Guid IdContractTemplate { get; set; }
+    public required DateTime Deadline { get; set; }
+    public required DateTime StartDate { get; set; }
+    public bool? IsAccepted { get; set; }
+    public bool? IsCompleted { get; set; }
+    public int? Progress { get; set; }
+    public required int Reward { get; set; }
 
     //Relation
-    public ContractType? ContractTypes { get; set; }
+    public ICollection<CompanyContractEmployee>? CompanyContractEmployees { get; set; }
+    public ContractTemplate? ContractTemplate { get; set; }
+    
+
 }

@@ -8,5 +8,5 @@ public class MaterialSkill : AuditableBaseEntity
     public required int Modificator { get; set; }
 
     // Relation
-    public ICollection<Material>? Materials { get; set; }
+    public ICollection<MaterialTemplate>? Materials { get; set; }
 }

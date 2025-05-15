@@ -8,10 +8,8 @@ using DevLife.Domain.Modules.Employees;
 using DevLife.Infrastructure.Commons.Bases;
 using DevLife.Infrastructure.Persistence.Contexts;
 
-namespace DevLife.Infrastructure.Modules.Employees.Repositories;
+namespace DevLife.Infrastructure.Commons.Repositories;
 
-public sealed class EmployeeNameRepository(AppDbContext context) : BaseRepository<EmployeeName>(context), IEmployeeNameRepository
+public class EmployeeRepository(AppDbContext context) : BaseRepository<Employee>(context), IEmployeeRepository
 {
 }
-
-

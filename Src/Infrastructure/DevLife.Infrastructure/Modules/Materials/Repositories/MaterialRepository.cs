@@ -3,9 +3,9 @@ using DevLife.Domain.Modules.Materials;
 using DevLife.Infrastructure.Commons.Bases;
 using DevLife.Infrastructure.Persistence.Contexts;
 
-namespace DevLife.Infrastructure.Modules.Materials.Repositories
+namespace DevLife.Infrastructure.Commons.Repositories
 {
-    public sealed class MaterialRepository(AppDbContext context) : BaseRepository<Material>(context), IMaterialRepository
+    public sealed class MaterialCompanyRepository(AppDbContext context) : BaseRepository<Material>(context), IMaterialRepository
     {
     }
 }

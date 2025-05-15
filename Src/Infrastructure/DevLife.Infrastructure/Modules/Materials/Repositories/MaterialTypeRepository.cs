@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevLife.Infrastructure.Commons.Configurations
+namespace DevLife.Infrastructure.Modules.Materials.Repositories
 {
-    public class CompanyContractConfiguration : IEntityTypeConfiguration<CompanyContract>
+    public class MateriaTypeRepository
     {
         public void Configure(EntityTypeBuilder<CompanyContract> builder)
         {

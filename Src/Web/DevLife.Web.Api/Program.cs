@@ -1,7 +1,9 @@
+using DevLife.Infrastructure;
 using DevLife.Infrastructure.Identity;
 using DevLife.Infrastructure.Identity.Entity;
 using DevLife.Infrastructure.Identity.Persistence.Contexts;
 using DevLife.Infrastructure.Identity.Persistence.Seeds;
+using DevLife.Infrastructure.Persistence.Contexts;
 using DevLife.Web.Api.Commons.Extenssions;
 using DevLife.Web.Api.Commons.Services;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +17,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 bool useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryDatabase");
 
-builder.Services.AddIdentityInfrastructure(builder.Configuration, useInMemoryDatabase);
+builder.Services.AddIdentityInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
+builder.Services.AddInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
+builder.Services.AddPresentationWebApiLayer();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerExtensions();
@@ -30,17 +34,17 @@ using (var scope = app.Services.CreateScope())
     if (!useInMemoryDatabase)
     {
         var identityDb = services.GetRequiredService<AppIdentityDbContext>();
-        // var appDb = services.GetRequiredService<AppDbContext>();
+        var appDb = services.GetRequiredService<AppDbContext>();
 
-        await DatabaseHelper.EnsureDatabaseReadyAsync(identityDb);
+        // await DatabaseHelper.EnsureDatabaseReadyAsync(identityDb);
         // await DatabaseHelper.EnsureDatabaseReadyAsync(appDb);
 
         if ((await identityDb.Database.GetPendingMigrationsAsync()).Any())
 
             await identityDb.Database.MigrateAsync();
 
-        // if ((await appDb.Database.GetPendingMigrationsAsync()).Any())
-        //     await appDb.Database.MigrateAsync();
+        if ((await appDb.Database.GetPendingMigrationsAsync()).Any())
+            await appDb.Database.MigrateAsync();
     }
 
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();

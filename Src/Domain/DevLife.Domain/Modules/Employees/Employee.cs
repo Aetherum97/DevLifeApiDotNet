@@ -1,14 +1,15 @@
 using System;
 using DevLife.Domain.Commons.Bases;
-using DevLife.Domain.Modules.Employees;
+using DevLife.Domain.Commons.Entity;
 
-namespace DevLife.Domain.Commons.Entity;
+
+namespace DevLife.Domain.Modules.Employees;
 
 public class Employee : AuditableBaseEntity
 {
 
     public Guid CompanyId { get; set; }
-    public Guid NameId { get; set; }
+    public Guid EmployeeNameId { get; set; }
     public required int Salary { get; set; }
     public required int Experience { get; set; }
     public required int Level { get; set; }
@@ -20,10 +21,10 @@ public class Employee : AuditableBaseEntity
 
 
     // Relation
-    public Company? Company { get; set; }
-    public EmployeeName? EmployeeName {get; set;}
-    public ICollection<EmployeeSkill>? EmployeeSkills {get; set;}
-    public ICollection<CompanyContract>? CompanyContracts { get; set; }
-    public ICollection<MaterialCompany>? MaterialsCompany { get; set; }
+    public CompanyEmployee? CompanyEmployee { get; set; }
+    public ICollection<CompanyContractEmployee>? CompanyContractEmployees { get; set; }
+    public ICollection<CompanyMaterialEmployee>? CompanyMaterialEmployees { get; set; }
+    public EmployeeName? EmployeeName { get; set; }
+    public ICollection<EmployeeSkill>? EmployeeSkills { get; set; }
 
 }

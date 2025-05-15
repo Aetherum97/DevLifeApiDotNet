@@ -10,7 +10,7 @@ namespace DevLife.Infrastructure;
 
 public static class ServiceRegister
 {
-    public static IServiceCollection AddPersistenceInfrastructure(this IServiceCollection services, IConfiguration configuration, bool useInMemoryDatabase)
+    public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration, bool useInMemoryDatabase)
     {
         if (useInMemoryDatabase)
         {

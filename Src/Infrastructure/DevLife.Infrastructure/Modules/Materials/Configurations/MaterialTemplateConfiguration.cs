@@ -1,4 +1,4 @@
-﻿using DevLife.Domain.Modules.Materials;
+using DevLife.Domain.Modules.Materials;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DevLife.Infrastructure.Modules.Materials.Configurations
 {
-    public class MaterialConfiguration : IEntityTypeConfiguration<Material>
+    public class MaterialTemplateConfiguration : IEntityTypeConfiguration<MaterialTemplate>
     {
-        public void Configure(EntityTypeBuilder<Material> builder)
+        public void Configure(EntityTypeBuilder<MaterialTemplate> builder)
         {
             builder.ToTable("Material");
             builder.HasKey(m => m.Id);
@@ -37,3 +37,5 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
         }
     }
 }
+
+
