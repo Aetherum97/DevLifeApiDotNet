@@ -29,4 +29,8 @@
     <ProjectReference Include="../../Shared/DevLife.Shared/DevLife.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Persistence/Migrations/" />
+  </ItemGroup>
+
 </Project>

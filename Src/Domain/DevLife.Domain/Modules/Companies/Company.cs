@@ -1,8 +1,8 @@
 using System;
 using DevLife.Domain.Commons.Bases;
 using DevLife.Domain.Commons.Entity;
-using DevLife.Domain.Modules.Contracts.Entity;
-using DevLife.Domain.Modules.Materials.Entity;
+using DevLife.Domain.Modules.Contracts;
+using DevLife.Domain.Modules.Materials;
 using DevLife.Domain.Modules.Players;
 
 

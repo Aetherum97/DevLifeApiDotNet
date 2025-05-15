@@ -1,9 +1,9 @@
 using System;
 using DevLife.Domain.Commons.Bases;
 using DevLife.Domain.Modules.Companies;
-using DevLife.Domain.Modules.Contracts.Entity;
+using DevLife.Domain.Modules.Contracts;
 using DevLife.Domain.Modules.Employees;
-using DevLife.Domain.Modules.Materials.Entity;
+using DevLife.Domain.Modules.Materials;
 
 namespace DevLife.Domain.Commons.Entity;
 

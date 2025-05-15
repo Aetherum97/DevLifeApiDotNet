@@ -1,9 +1,9 @@
 ﻿using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Domain.Commons.Entity;
 using DevLife.Domain.Modules.Companies;
-using DevLife.Domain.Modules.Contracts.Entity;
+using DevLife.Domain.Modules.Contracts;
 using DevLife.Domain.Modules.Employees;
-using DevLife.Domain.Modules.Materials.Entity;
+using DevLife.Domain.Modules.Materials;
 using DevLife.Infrastructure.Commons.Configurations;
 using DevLife.Infrastructure.Commons.Extensions;
 using Microsoft.EntityFrameworkCore;

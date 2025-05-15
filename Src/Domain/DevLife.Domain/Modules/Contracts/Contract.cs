@@ -2,7 +2,7 @@ using DevLife.Domain.Commons.Bases;
 using DevLife.Domain.Commons.Entity;
 using DevLife.Domain.Modules.Companies;
 
-namespace DevLife.Domain.Modules.Contracts.Entity;
+namespace DevLife.Domain.Modules.Contracts;
 
 public class Contract : AuditableBaseEntity
 {

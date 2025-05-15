@@ -2,7 +2,7 @@ using DevLife.Domain.Commons.Bases;
 
 namespace DevLife.Domain.Modules.Materials;
 
-public class MaterialType : AuditableBaseEntity
+public class MaterialTemplate : AuditableBaseEntity
 {
     public required Guid IdMaterialSkill { get; set; }
     public required string Name { get; set; }

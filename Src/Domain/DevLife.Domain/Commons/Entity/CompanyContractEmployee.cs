@@ -1,7 +1,7 @@
 using System;
 using DevLife.Domain.Commons.Bases;
 using DevLife.Domain.Modules.Companies;
-using DevLife.Domain.Modules.Contracts.Entity;
+using DevLife.Domain.Modules.Contracts;
 using DevLife.Domain.Modules.Employees;
 
 namespace DevLife.Domain.Commons.Entity;
