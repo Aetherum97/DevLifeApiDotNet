@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevLife.Application.Modules.Contracts.Interfaces
+namespace DevLife.Application.Modules.Contracts.Interfaces.Repositories
 {
     public interface IContractTemplateRepository : IBaseRepository<ContractTemplate>
     {

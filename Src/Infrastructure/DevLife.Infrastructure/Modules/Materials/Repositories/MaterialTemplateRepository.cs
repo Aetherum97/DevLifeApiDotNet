@@ -1,4 +1,4 @@
-﻿using DevLife.Application.Modules.Materials.Interfaces;
+﻿using DevLife.Application.Modules.Materials.Interfaces.Repositories;
 using DevLife.Domain.Commons.Entity;
 using DevLife.Domain.Modules.Materials;
 using DevLife.Infrastructure.Commons.Bases;

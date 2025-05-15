@@ -1,7 +1,7 @@
 ﻿using DevLife.Application.Commons.Interfaces.Repositories;
 using DevLife.Domain.Modules.Materials;
 
-namespace DevLife.Application.Modules.Materials.Interfaces
+namespace DevLife.Application.Modules.Materials.Interfaces.Repositories
 {
     public interface IMaterialRepository : IBaseRepository<Material>
     {

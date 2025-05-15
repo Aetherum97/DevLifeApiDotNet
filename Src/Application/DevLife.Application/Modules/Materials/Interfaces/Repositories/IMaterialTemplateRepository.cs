@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevLife.Application.Modules.Materials.Interfaces
+namespace DevLife.Application.Modules.Materials.Interfaces.Repositories
 {
     public interface IMaterialTemplateRepository : IBaseRepository<MaterialTemplate>
     {
