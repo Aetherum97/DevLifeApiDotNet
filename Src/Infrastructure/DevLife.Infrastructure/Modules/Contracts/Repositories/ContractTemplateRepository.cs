@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DevLife.Infrastructure.Modules.Contracts.Repositories
 {
-    public sealed class ContractRepository(AppDbContext context) : BaseRepository<Contract>(context), IContractRepository
+    public sealed class ContractTemplateRepository(AppDbContext context) : BaseRepository<ContractTemplate>(context), IContractTemplateRepository
     {
     }
 }
