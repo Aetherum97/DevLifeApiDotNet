@@ -6,6 +6,7 @@ using DevLife.Domain.Modules.Employees;
 using DevLife.Domain.Modules.Materials;
 using DevLife.Infrastructure.Commons.Configurations;
 using DevLife.Infrastructure.Commons.Extensions;
+using DevLife.Infrastructure.Modules.Employees.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevLife.Infrastructure.Persistence.Contexts;
@@ -21,6 +22,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IAuthenticated
     // Employees Module
 
     public DbSet<Employee> Employee { get; set; } = null!;
+    public DbSet<EmployeeName> EmployeeName { get; set; } = null!;
+    public DbSet<EmployeeSkill> EmployeeSkill { get; set; } = null!;
+    public DbSet<EmployeeSkillModificator> EmployeeSkillModificator { get; set; } = null!;
 
     // Contracts Module
 
@@ -41,22 +45,27 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IAuthenticated
         return base.SaveChangesAsync(cancellationToken);
     }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
 
         // Comons 
 
-        builder.ApplyConfiguration(new CompanyContractEmployeeConfiguration());
-        builder.ApplyConfiguration(new CompanyMaterialEmployeeConfiguration());
-        builder.ApplyConfiguration(new CompanyEmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new CompanyContractEmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new CompanyMaterialEmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new CompanyEmployeeConfiguration());
 
         // Employees Module
+
+        modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new EmployeeNameConfiguration());
+        modelBuilder.ApplyConfiguration(new EmployeeSkillConfiguration());
+        modelBuilder.ApplyConfiguration(new EmployeeSkillModificatorConfiguration());
 
         // Contracts Module
 
         // Companies Module
-        
+
         // Materials Module
 
     }

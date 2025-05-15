@@ -8,7 +8,7 @@ using DevLife.Domain.Modules.Employees;
 using DevLife.Infrastructure.Commons.Bases;
 using DevLife.Infrastructure.Persistence.Contexts;
 
-namespace DevLife.Infrastructure.Commons.Repositories;
+namespace DevLife.Infrastructure.Modules.Employees.Repositories;
 
 public class EmployeeRepository(AppDbContext context) : BaseRepository<Employee>(context), IEmployeeRepository
 {
