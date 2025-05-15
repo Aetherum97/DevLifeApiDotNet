@@ -13,7 +13,6 @@ namespace DevLife.Infrastructure.Modules.Contracts.Configurations
     {
         public void Configure(EntityTypeBuilder<ContractType> builder)
         {
-            builder.ToTable("ContractType");
             builder.HasKey(ct => ct.Id);
             builder.Property(m => m.Name)
                 .IsRequired()

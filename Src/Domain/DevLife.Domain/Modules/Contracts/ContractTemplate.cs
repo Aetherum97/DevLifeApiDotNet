@@ -10,4 +10,5 @@ public class ContractTemplate : AuditableBaseEntity
 
     //Relation
     public ContractType? ContractTypes { get; set; }
+    public ICollection<Contract>? Contracts { get; set; }
 }

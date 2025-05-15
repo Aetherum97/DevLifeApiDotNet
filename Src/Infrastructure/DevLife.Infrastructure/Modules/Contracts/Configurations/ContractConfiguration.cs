@@ -13,24 +13,19 @@ namespace DevLife.Infrastructure.Modules.Contracts.Configurations
     {
         public void Configure(EntityTypeBuilder<Contract> builder)
         {
-            builder.ToTable("Contract");
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.IdType)
-                .IsRequired()
-                .HasColumnName("IdType");
-            builder.Property(c => c.Title)
-                .IsRequired()
-                .HasMaxLength(250);
-            builder.Property(c => c.ImageUrl)
-                .IsRequired()
-                .HasMaxLength(800);
-            builder.Property(c => c.Description)
-                .IsRequired()
-                .HasMaxLength(500);
 
-            builder.HasOne(c => c.ContractTypes)
+            builder.Property(c => c.Deadline);
+            builder.Property(c => c.StartDate);
+            builder.Property(c => c.IsAccepted);
+            builder.Property(c => c.IsCompleted);
+            builder.Property(c => c.Progress);
+            builder.Property(c => c.Reward);
+            builder.Property(c => c.IsDeleted);
+
+            builder.HasOne(c => c.ContractTemplate)
                 .WithMany(ct => ct.Contracts)
-                .HasForeignKey(c => c.IdType)
+                .HasForeignKey(c => c.IdContractTemplate)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
