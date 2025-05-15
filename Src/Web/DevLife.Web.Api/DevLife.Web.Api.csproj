@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
@@ -16,11 +20,6 @@
     <ProjectReference Include="../../Infrastructure/DevLife.Infrastructure.Identity/DevLife.Infrastructure.Identity.csproj" />
     <ProjectReference Include="../../Infrastructure/DevLife.Infrastructure/DevLife.Infrastructure.csproj" />
     <ProjectReference Include="../../Shared/DevLife.Shared/DevLife.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Commons/" />
-    <Folder Include="Commons/services/" />
   </ItemGroup>
 
 </Project>

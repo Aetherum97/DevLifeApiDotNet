@@ -10,8 +10,7 @@ using DevLife.Infrastructure.Persistence.Contexts;
 
 namespace DevLife.Infrastructure.Modules.Employees.Repositories;
 
-public sealed class EmployeeNameRepository(AppDbContext context) : BaseRepository<EmployeeName>(context), IEmployeeNameRepository
+public sealed class EmployeeSkillModificatorRepository(AppDbContext context) : BaseRepository<EmployeeSkillModificator>(context), IEmployeeSkillModificatorRepository
 {
 }
-
 

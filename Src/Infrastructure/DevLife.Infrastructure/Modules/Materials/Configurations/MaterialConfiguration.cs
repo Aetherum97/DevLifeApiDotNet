@@ -1,4 +1,4 @@
-﻿using DevLife.Domain.Modules.Materials;
+using DevLife.Domain.Modules.Materials;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -35,3 +35,4 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
         }
     }
 }
+

@@ -1,18 +1,17 @@
 using DevLife.Domain.Commons.Bases;
 using DevLife.Domain.Commons.Entity;
 
-namespace DevLife.Domain.Modules.Materials;
+
+
+namespace DevLife.Domain.Modules.Materials.Entity;
 
 public class Material : AuditableBaseEntity
 {
-    public required Guid IdMaterialSkill { get; set; }
-    public required string Name { get; set; }
-    public required string Type { get; set; }
-    public required string Description { get; set; }
-    public required string ImageUrl { get; set; }
+    public required Guid IdEmployee { get; set; }
+    public required Guid IdCompany { get; set; }
+    public required Guid IdMaterial { get; set; }
 
-    //Relation
-    public MaterialSkill? MaterialSkill { get; set; }
-
-    public ICollection<MaterialCompany>? MaterialCompany { get; set; }
+    // Relation
+    public ICollection<CompanyMaterialEmployee>? CompanyMaterialEmployees { get; set; }
+    public MaterialType? MaterialType { get; set; }
 }

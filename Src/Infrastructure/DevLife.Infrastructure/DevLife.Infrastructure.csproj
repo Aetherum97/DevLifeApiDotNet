@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Modules/Companies/Configurations/CompanyConfiguration.cs" />
+    <Compile Include="Modules/Companies/Repositories/CompanyRepository.cs" />
+    <Compile Include="Modules/Companies/Repositories/PlayerRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.15" />
