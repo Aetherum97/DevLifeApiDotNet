@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DevLife.Domain.Commons.Entity;
-using DevLife.Domain.Modules.Players;
+using DevLife.Domain.Modules.Companies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,16 +17,6 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
         builder.Property(c => c.Name).IsRequired();
         builder.Property(c => c.Experience).IsRequired();
 
-
-        builder.HasMany(c => c.Employees)
-            .WithOne()
-            .HasForeignKey(e => e.CompanyId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasMany(c => c.MaterialCompany)
-            .WithOne()
-            .HasForeignKey(mc => mc.IdCompany)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 

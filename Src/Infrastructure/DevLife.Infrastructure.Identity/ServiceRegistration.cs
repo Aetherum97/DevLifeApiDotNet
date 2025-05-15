@@ -20,7 +20,7 @@ namespace DevLife.Infrastructure.Identity
 {
     public static class ServiceRegistration
     {
-        public static IServiceCollection AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration, bool useInMemoryDatabase)
+        public static IServiceCollection AddIdentityInfrastructureLayer(this IServiceCollection services, IConfiguration configuration, bool useInMemoryDatabase)
         {
 
             if (useInMemoryDatabase)

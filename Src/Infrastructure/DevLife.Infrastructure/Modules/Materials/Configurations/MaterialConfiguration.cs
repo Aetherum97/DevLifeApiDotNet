@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevLife.Infrastructure.Modules.Players.Repositories
+namespace DevLife.Infrastructure.Modules.Materials.Configurations
 {
-    public class PlayerRepository
+    public class MaterialConfiguration
     {
     }
 }

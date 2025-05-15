@@ -1,4 +1,5 @@
 ﻿using DevLife.Domain.Commons.Entity;
+using DevLife.Domain.Modules.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,26 +20,6 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.Property(e => e.CDatabase).IsRequired();
         builder.Property(e => e.IsAvalaible).IsRequired();
 
-        builder.HasOne(e => e.Company)
-            .WithMany()
-            .HasForeignKey(e => e.CompanyId)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(e => e.EmployeeName)
-            .WithMany()
-            .HasForeignKey(e => e.NameId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasMany(e => e.CompanyContracts).WithMany();
-
-        builder.HasMany(e => e.EmployeeSkills).WithMany();
-
-        builder.HasMany(e => e.MaterialsCompany)
-              .WithOne()
-              .HasForeignKey(mc => mc.IdEmployee)
-              .IsRequired()
-              .OnDelete(DeleteBehavior.Cascade);
     }
 }
 

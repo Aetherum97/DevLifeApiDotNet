@@ -1,6 +1,7 @@
 using System;
 using DevLife.Domain.Commons.Bases;
 using DevLife.Domain.Commons.Entity;
+using DevLife.Domain.Modules.Companies;
 
 namespace DevLife.Domain.Modules.Players;
 
