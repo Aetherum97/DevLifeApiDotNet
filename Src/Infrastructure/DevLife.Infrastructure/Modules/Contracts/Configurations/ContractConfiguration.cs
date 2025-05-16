@@ -25,7 +25,7 @@ namespace DevLife.Infrastructure.Modules.Contracts.Configurations
 
             builder.HasOne(c => c.ContractTemplate)
                 .WithMany(ct => ct.Contracts)
-                .HasForeignKey(c => c.IdContractTemplate)
+                .HasForeignKey(c => c.ContractTemplateId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
