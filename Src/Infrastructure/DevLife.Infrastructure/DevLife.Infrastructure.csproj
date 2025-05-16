@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Compile Include="Modules/Companies/Configurations/CompanyConfiguration.cs" />
+    <Compile Include="Modules/Companies/Configurations/PlayerConfiguration.cs" />
     <Compile Include="Modules/Companies/Repositories/CompanyRepository.cs" />
     <Compile Include="Modules/Companies/Repositories/PlayerRepository.cs" />
   </ItemGroup>
