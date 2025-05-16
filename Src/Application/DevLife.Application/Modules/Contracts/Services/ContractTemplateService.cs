@@ -9,18 +9,11 @@ using System.Threading.Tasks;
 
 namespace DevLife.Application.Modules.Contracts.Services
 {
-    public class ContractTemplateService : IContractTemplateService
+    public class ContractTemplateService(IContractTemplateRepository contractTemplateRepository) : IContractTemplateService
     {
-        private readonly IContractTemplateRepository _contractTemplateRepository;
-
-        public ContractTemplateService(IContractTemplateRepository contractTemplateRepository)
-        {
-            _contractTemplateRepository = contractTemplateRepository;
-        }
-
         public async Task<List<ContractTemplate>> GetAllAsync()
         {
-            return await _contractTemplateRepository.GetAllAsync();
+            return await contractTemplateRepository.GetAllAsync();
         }
     }
 }

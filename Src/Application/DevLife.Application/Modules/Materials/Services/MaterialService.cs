@@ -9,18 +9,11 @@ using System.Threading.Tasks;
 
 namespace DevLife.Application.Modules.Materials.Services
 {
-    public class MaterialService : IMaterialService
+    public class MaterialService(IMaterialRepository materialRepository) : IMaterialService
     {
-        private readonly IMaterialRepository _materialRepository;
-
-        public MaterialService(IMaterialRepository materialRepository)
-        {
-            _materialRepository = materialRepository;
-        }
-
         public async Task<List<Material>> GetAllAsync()
         {
-            return await _materialRepository.GetAllAsync();
+            return await materialRepository.GetAllAsync();
         }
     }
 }

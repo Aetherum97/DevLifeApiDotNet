@@ -1,4 +1,4 @@
-﻿using DevLife.Application.Modules.Companies.Interfaces.Interfaces;
+﻿using DevLife.Application.Modules.Companies.Interfaces.Repositories;
 using DevLife.Domain.Modules.Companies;
 using DevLife.Infrastructure.Commons.Bases;
 using DevLife.Infrastructure.Persistence.Contexts;

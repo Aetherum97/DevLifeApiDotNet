@@ -1,3 +1,4 @@
+using DevLife.Application;
 using DevLife.Infrastructure;
 using DevLife.Infrastructure.Identity;
 using DevLife.Infrastructure.Identity.Entity;
@@ -19,6 +20,7 @@ bool useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryData
 
 builder.Services.AddIdentityInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
 builder.Services.AddInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
+builder.Services.AddApplicationLayer();
 builder.Services.AddPresentationWebApiLayer();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -9,18 +9,11 @@ using System.Threading.Tasks;
 
 namespace DevLife.Application.Modules.Employees.Services
 {
-    public class EmployeeSkillModificatorService : IEmployeeSkillModificatorService
+    public class EmployeeSkillModificatorService(IEmployeeSkillModificatorRepository employeeSkillModificatorRepository) : IEmployeeSkillModificatorService
     {
-        private readonly IEmployeeSkillModificatorRepository _employeeSkillModificatorRepository;
-
-        public EmployeeSkillModificatorService(IEmployeeSkillModificatorRepository employeeSkillModificatorRepository)
-        {
-            _employeeSkillModificatorRepository = employeeSkillModificatorRepository;
-        }
-
         public async Task<List<EmployeeSkillModificator>> GetAllAsync()
         {
-            return await _employeeSkillModificatorRepository.GetAllAsync();
+            return await employeeSkillModificatorRepository.GetAllAsync();
         }
     }
 }

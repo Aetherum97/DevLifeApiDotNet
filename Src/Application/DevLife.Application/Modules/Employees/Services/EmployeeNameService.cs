@@ -9,18 +9,11 @@ using System.Threading.Tasks;
 
 namespace DevLife.Application.Modules.Employees.Services
 {
-    public class EmployeeNameService : IEmployeeNameService
+    public class EmployeeNameService(IEmployeeNameRepository employeeNameRepository) : IEmployeeNameService
     {
-        private readonly IEmployeeNameRepository _employeeNameRepository;
-
-        public EmployeeNameService(IEmployeeNameRepository employeeNameRepository)
-        {
-            _employeeNameRepository = employeeNameRepository;
-        }
-
         public async Task<List<EmployeeName>> GetAllAsync()
         {
-            return await _employeeNameRepository.GetAllAsync();
+            return await employeeNameRepository.GetAllAsync();
         }
     }
 }
