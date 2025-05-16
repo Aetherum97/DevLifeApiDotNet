@@ -15,6 +15,10 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
         {
             builder.HasKey(m => m.Id);
 
+            builder.HasOne(m => m.MaterialTemplate)
+                .WithMany(mt => mt.Material)
+                .HasForeignKey(m => m.MaterialTemplateId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

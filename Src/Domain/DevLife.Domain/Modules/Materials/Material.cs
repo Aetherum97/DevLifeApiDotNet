@@ -7,7 +7,7 @@ namespace DevLife.Domain.Modules.Materials;
 
 public class Material : AuditableBaseEntity
 {
-    public required Guid IdMaterialTemplate { get; set; }
+    public required Guid MaterialTemplateId { get; set; }
 
     // Relation
     public required CompanyMaterial CompanyMaterial{ get; set; }
