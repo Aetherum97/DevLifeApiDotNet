@@ -6,8 +6,8 @@ namespace DevLife.Domain.Modules.Contracts;
 
 public class Contract : AuditableBaseEntity
 {
-    public required Guid IdCompany { get; set; }
-    public required Guid IdContractTemplate { get; set; }
+    public required Guid CompanyId { get; set; }
+    public required Guid ContractTemplateId { get; set; }
     public required DateTime Deadline { get; set; }
     public required DateTime StartDate { get; set; }
     public bool? IsAccepted { get; set; }
