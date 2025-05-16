@@ -7,9 +7,7 @@ namespace DevLife.Domain.Modules.Employees;
 
 public class Employee : AuditableBaseEntity
 {
-
-    public Guid CompanyId { get; set; }
-    public Guid EmployeeNameId { get; set; }
+    public required Guid EmployeeNameId { get; set; }
     public required int Salary { get; set; }
     public required int Experience { get; set; }
     public required int Level { get; set; }
@@ -21,10 +19,8 @@ public class Employee : AuditableBaseEntity
 
 
     // Relation
-    public CompanyEmployee? CompanyEmployee { get; set; }
-    public ICollection<CompanyContractEmployee>? CompanyContractEmployees { get; set; }
-    public ICollection<CompanyMaterialEmployee>? CompanyMaterialEmployees { get; set; }
-    public EmployeeName? EmployeeName { get; set; }
-    public ICollection<EmployeeSkill>? EmployeeSkills { get; set; }
-
+    public required EmployeeName EmployeeName { get; set; }
+    public required ICollection<EmployeeSkill>? EmployeeSkills { get; set; }
+    public required CompanyEmployee CompanyEmployee { get; set; }
+   
 }

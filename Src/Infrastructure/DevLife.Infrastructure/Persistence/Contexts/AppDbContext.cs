@@ -20,6 +20,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IAuthenticated
     public DbSet<CompanyContractEmployee> CompanyContractEmployee { get; set; } = null!;
     public DbSet<CompanyMaterialEmployee> CompanyMaterialEmployee { get; set; } = null!;
     public DbSet<CompanyEmployee> CompanyEmployee { get; set; } = null!;
+    public DbSet<CompanyContract> CompanyContract { get; set; } = null!;
+    public DbSet<CompanyContract> CompanyMaterial { get; set; } = null!;
+
 
     // Employees Module
 
@@ -56,10 +59,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IAuthenticated
         base.OnModelCreating(modelBuilder);
 
         // Comons 
-
+        modelBuilder.ApplyConfiguration(new CompanyEmployeeConfiguration());
+        modelBuilder.ApplyConfiguration(new CompanyContractConfiguration());
+        modelBuilder.ApplyConfiguration(new CompanyMaterialConfiguration());
         modelBuilder.ApplyConfiguration(new CompanyContractEmployeeConfiguration());
         modelBuilder.ApplyConfiguration(new CompanyMaterialEmployeeConfiguration());
-        modelBuilder.ApplyConfiguration(new CompanyEmployeeConfiguration());
+        
 
         // Employees Module
 
