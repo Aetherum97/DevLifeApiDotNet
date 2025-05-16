@@ -14,9 +14,7 @@ namespace DevLife.Infrastructure.Modules.Contracts.Configurations
         public void Configure(EntityTypeBuilder<ContractTemplate> builder)
         {
             builder.HasKey(ct => ct.Id);
-            builder.Property(ct => ct.IdType)
-                .IsRequired()
-                .HasColumnName("IdType");
+
             builder.Property(ct => ct.Title)
                 .IsRequired()
                 .HasMaxLength(250);
@@ -29,7 +27,7 @@ namespace DevLife.Infrastructure.Modules.Contracts.Configurations
 
             builder.HasOne(c => c.ContractTypes)
                 .WithMany(ct => ct.Contracts)
-                .HasForeignKey(c => c.IdType)
+                .HasForeignKey(c => c.TypeId)
                 .OnDelete(DeleteBehavior.Cascade);
 
         }
