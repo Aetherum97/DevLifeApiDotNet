@@ -1,5 +1,5 @@
+using DevLife.Application.Modules.Contracts.DTOs;
 using DevLife.Application.Modules.Contracts.Interfaces.Services;
-using DevLife.Domain.Modules.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@ namespace DevLife.Web.Api.Modules.Contracts
     {
 
         [HttpGet]
-        public async Task<ActionResult<List<ContractTemplate>>> GetAll()
+        public async Task<ActionResult<List<ContractTemplateDto>>> GetAll()
         {
             var items = await contractTemplateService.GetAllAsync();
             return Ok(items);

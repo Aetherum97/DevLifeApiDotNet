@@ -1,7 +1,5 @@
+using DevLife.Application.Modules.Contracts.DTOs;
 using DevLife.Application.Modules.Contracts.Interfaces.Services;
-using DevLife.Application.Modules.Contracts.Services;
-using DevLife.Domain.Modules.Contracts;
-using DevLife.Infrastructure.Modules.Contracts.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +10,10 @@ namespace DevLife.Web.Api.Modules.Contracts;
 public class ContractController(IContractService contractService) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<List<Contract>>> GetAll()
+    public async Task<ActionResult<List<ContractDto>>> GetAll()
     {
-        var items = await contractService.GetAllAsync();
-        return Ok(items);
+        var response = await contractService.GetAllAsync();
+        return Ok(response);
     }
 
 }

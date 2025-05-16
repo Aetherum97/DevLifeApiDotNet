@@ -1,4 +1,5 @@
-﻿using DevLife.Domain.Modules.Contracts;
+﻿using DevLife.Application.Modules.Contracts.DTOs;
+using DevLife.Domain.Modules.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DevLife.Application.Modules.Contracts.Interfaces.Services
 {
     public interface IContractTypeService
     {
-        Task<List<ContractType>> GetAllAsync();
+        Task<List<ContractTypeDto>> GetAllAsync();
 
     }
 }
