@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevLife.Application.Commons.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DevLife.Application.Modules.Companies.DTOs
     public class CompanyDto
     {
         public Guid Id { get; set; }
-        public required string Name { get; set; }
+        public string? Name { get; set; }
         public int Experience { get; set; }
         public PlayerDto? Player { get; set; }
         public IEnumerable<CompanyEmployeeDto>? CompanyEmployees { get; set; }

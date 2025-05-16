@@ -5,6 +5,7 @@ using DevLife.Infrastructure.Identity.Entity;
 using DevLife.Infrastructure.Identity.Persistence.Contexts;
 using DevLife.Infrastructure.Identity.Persistence.Seeds;
 using DevLife.Infrastructure.Persistence.Contexts;
+using DevLife.Shared.Mapper;
 using DevLife.Web.Api.Commons.Extenssions;
 using DevLife.Web.Api.Commons.Services;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +21,7 @@ bool useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryData
 
 builder.Services.AddIdentityInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
 builder.Services.AddInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
+builder.Services.AddScoped<ICustomMapper, CustomMapperService>();
 builder.Services.AddApplicationLayer();
 builder.Services.AddPresentationWebApiLayer();
 builder.Services.AddControllers();

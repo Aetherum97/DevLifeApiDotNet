@@ -7,7 +7,7 @@ namespace DevLife.Shared.Mapper
 {
     public static class CustomMapper
     {
-        public static TTarget Map<TSource, TTarget>(TSource source) where TTarget : new()
+        public static TTarget Map<TSource, TTarget>(TSource source)
         {
             return (TTarget)Map(typeof(TSource), typeof(TTarget), source!);
         }
