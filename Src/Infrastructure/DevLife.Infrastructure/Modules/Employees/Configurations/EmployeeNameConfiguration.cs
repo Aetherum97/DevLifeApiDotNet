@@ -10,6 +10,10 @@ public class EmployeeNameConfiguration : IEntityTypeConfiguration<EmployeeName>
     public void Configure(EntityTypeBuilder<EmployeeName> builder)
     {
         builder.HasKey(e => e.Id);
-        builder.Property(c => c.Name).IsRequired();
+        builder.HasIndex(e => e.Name).IsUnique();
+
+        builder.Property(c => c.Name)
+            .HasMaxLength(100)
+            .IsRequired();
     }
 }

@@ -10,14 +10,45 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {
         builder.HasKey(en => en.Id);
 
-        builder.Property(en=> en.Salary).IsRequired();
-        builder.Property(en => en.Experience).IsRequired();
-        builder.Property(en => en.Level).IsRequired();
-        builder.Property(en => en.CFrontEnd).IsRequired();
-        builder.Property(en => en.CBackEnd).IsRequired();
-        builder.Property(en => en.CDevops).IsRequired();
-        builder.Property(en => en.CDatabase).IsRequired();
-        builder.Property(en => en.IsAvalaible).IsRequired();
+        builder.Property(en => en.Salary)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(0);
+
+        builder.Property(en => en.Experience)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(0);
+
+        builder.Property(en => en.Level)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(1);
+
+        builder.Property(en => en.CFrontEnd)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(0);
+
+        builder.Property(en => en.CBackEnd)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(0);
+
+        builder.Property(en => en.CDevops)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(0);
+
+        builder.Property(en => en.CDatabase)
+            .IsRequired()
+            .HasColumnType("int")
+            .HasDefaultValue(0);
+
+        builder.Property(en => en.IsAvalaible)
+            .IsRequired()
+            .HasColumnType("bit")
+            .HasDefaultValue(true);
 
         builder.HasOne(en => en.EmployeeName)
             .WithMany(en => en.Employees)

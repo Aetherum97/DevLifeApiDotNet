@@ -10,9 +10,14 @@ public class EmployeeSkillConfiguration : IEntityTypeConfiguration<EmployeeSkill
     public void Configure(EntityTypeBuilder<EmployeeSkill> builder)
     {
         builder.HasKey(es => es.Id);
+        builder.HasIndex(es => es.Name).IsUnique();
 
-        builder.Property(es => es.Name).IsRequired();
-        builder.Property(es => es.Description).IsRequired();
+        builder.Property(es => es.Name)
+            .HasMaxLength(100)
+            .IsRequired();
+        builder.Property(es => es.Description)
+            .HasMaxLength(500)
+            .IsRequired();
 
         builder.HasMany(es => es.SkillModificators)
             .WithMany(sm => sm.EmployeeSkills);
