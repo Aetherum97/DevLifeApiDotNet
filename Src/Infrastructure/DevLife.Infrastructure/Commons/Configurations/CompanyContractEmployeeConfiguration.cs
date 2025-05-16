@@ -11,28 +11,17 @@ public class CompanyContractEmployeeConfiguration : IEntityTypeConfiguration<Com
     public void Configure(EntityTypeBuilder<CompanyContractEmployee> builder)
     {
         builder.HasKey(cce => cce.Id);
+        builder.HasIndex(cce => new { cce.EmployeeId, cce.ContractId }).IsUnique();
 
-        builder.HasIndex(cce => new { cce.ContractId, cce.EmployeeId })
-            .IsUnique()
-            .HasFilter("[EmployeeId] IS NOT NULL");
+        builder.HasOne(cce => cce.CompanyEmployee)
+            .WithMany(e => e.ContractAssignments)
+            .HasForeignKey(cce => new { cce.CompanyId, cce.EmployeeId })
+            .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasIndex(cce => new { cce.CompanyId, cce.EmployeeId })
-            .IsUnique()
-            .HasFilter("[EmployeeId] IS NOT NULL");
 
-        builder.HasOne(cce => cce.Company)
-            .WithMany(c => c.CompanyContractEmployees)
-            .HasForeignKey(cce => cce.CompanyId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(cce => cce.Employee)
-            .WithMany(e => e.CompanyContractEmployees)
-            .HasForeignKey(cce => cce.EmployeeId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(cce => cce.Contract)
-            .WithMany(c => c.CompanyContractEmployees)
-            .HasForeignKey(cce => cce.ContractId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(cce => cce.CompanyContract)
+            .WithMany(c => c.AssignedEmployees)
+            .HasForeignKey(cce => new { cce.CompanyId, cce.ContractId })
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

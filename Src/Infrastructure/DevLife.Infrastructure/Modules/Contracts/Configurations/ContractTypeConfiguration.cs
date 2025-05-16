@@ -20,7 +20,7 @@ namespace DevLife.Infrastructure.Modules.Contracts.Configurations
 
             builder.HasMany(ct => ct.Contracts)
                 .WithOne(c => c.ContractTypes)
-                .HasForeignKey(ct => ct.IdType)
+                .HasForeignKey(ct => ct.TypeId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

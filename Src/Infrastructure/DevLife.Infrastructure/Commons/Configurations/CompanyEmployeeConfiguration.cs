@@ -10,9 +10,7 @@ public class CompanyEmployeeConfiguration : IEntityTypeConfiguration<CompanyEmpl
     public void Configure(EntityTypeBuilder<CompanyEmployee> builder)
     {
         builder.HasKey(ce => new { ce.EmployeeId, ce.CompanyId });
-
-        builder.HasIndex(ce => new { ce.EmployeeId })
-            .IsUnique();
+        builder.HasIndex(ce => ce.EmployeeId).IsUnique();
 
         builder.HasOne(ce => ce.Company)
             .WithMany(c => c.CompanyEmployees)
