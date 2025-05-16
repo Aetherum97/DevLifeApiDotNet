@@ -6,6 +6,7 @@ using DevLife.Domain.Modules.Employees;
 using DevLife.Domain.Modules.Materials;
 using DevLife.Infrastructure.Commons.Configurations;
 using DevLife.Infrastructure.Commons.Extensions;
+using DevLife.Infrastructure.Modules.Companies.Configurations;
 using DevLife.Infrastructure.Modules.Contracts.Configurations;
 using DevLife.Infrastructure.Modules.Employees.Configurations;
 using DevLife.Infrastructure.Modules.Materials.Configurations;
@@ -40,6 +41,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IAuthenticated
     // Companies Module
 
     public DbSet<Company> Company { get; set; } = null!;
+    public DbSet<Player> Player { get; set; } = null!;
 
     // Materials Module
 
@@ -79,6 +81,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IAuthenticated
         modelBuilder.ApplyConfiguration(new ContractTypeConfiguration());
 
         // Companies Module
+        modelBuilder.ApplyConfiguration(new CompanyConfiguration());
+        modelBuilder.ApplyConfiguration(new PlayerConfiguration());
 
         // Materials Module
         modelBuilder.ApplyConfiguration(new MaterialConfiguration());

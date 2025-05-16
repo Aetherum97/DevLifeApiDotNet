@@ -14,8 +14,17 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
     public void Configure(EntityTypeBuilder<Company> builder)
     {
         builder.HasKey(c => c.Id);
-        builder.Property(c => c.Name).IsRequired();
-        builder.Property(c => c.Experience).IsRequired();
+        builder.HasIndex(c => c.Id);
+
+        builder.Property(c => c.Name)
+            .HasMaxLength(100)
+            .IsRequired();
+        builder.Property(c => c.Experience)
+            .HasColumnType("int")
+            .HasDefaultValue(0)
+            .IsRequired();
+
+
 
     }
 }
