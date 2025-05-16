@@ -20,23 +20,31 @@ namespace DevLife.Application
         private static void RegisterServices(IServiceCollection services)
         {
             var assembly = Assembly.GetExecutingAssembly();
+            var allTypes = assembly.GetTypes().ToList();
 
-            var serviceInterfaces = assembly
-                .GetTypes()
-                .Where(t => t.IsInterface && t.Name.EndsWith("Service"))
+            var serviceImplementations = allTypes
+                .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith("Service"))
                 .ToList();
 
-            var serviceImplementations = assembly
-                .GetTypes()
-                .Where(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith("Service"))
+            var serviceInterfaces = serviceImplementations
+                .SelectMany(c => c.GetInterfaces())
+                .Where(i => i.Name.EndsWith("Service"))
+                .Distinct()
                 .ToList();
 
             foreach (var serviceInterface in serviceInterfaces)
             {
                 var implementation = serviceImplementations
                     .FirstOrDefault(c => serviceInterface.IsAssignableFrom(c));
-                
-                services.AddScoped(serviceInterface, implementation!);
+
+                if (implementation != null)
+                {
+                    services.AddScoped(serviceInterface, implementation);
+                }
+                else
+                {
+                    Console.WriteLine($"No implementation found for {serviceInterface.Name}");
+                }
             }
         }
     }
