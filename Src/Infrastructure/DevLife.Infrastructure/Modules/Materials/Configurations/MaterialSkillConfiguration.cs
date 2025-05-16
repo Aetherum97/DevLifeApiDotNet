@@ -19,11 +19,6 @@ namespace DevLife.Infrastructure.Modules.Materials.Configurations
                 .HasMaxLength(200);
             builder.Property(ms => ms.Modificator)
                 .IsRequired();
-
-            builder.HasMany(ms => ms.Materials)
-                .WithOne(m => m.MaterialSkill)
-                .HasForeignKey(m => m.IdMaterialSkill)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
