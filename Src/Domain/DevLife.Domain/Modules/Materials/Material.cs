@@ -10,6 +10,6 @@ public class Material : AuditableBaseEntity
     public required Guid MaterialTemplateId { get; set; }
 
     // Relation
-    public required CompanyMaterial CompanyMaterial{ get; set; }
-    public required MaterialTemplate MaterialTemplate { get; set; }
+    public  CompanyMaterial? CompanyMaterial{ get; set; }
+    public  MaterialTemplate? MaterialTemplate { get; set; }
 }

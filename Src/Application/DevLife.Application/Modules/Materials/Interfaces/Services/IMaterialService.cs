@@ -1,8 +1,9 @@
-using DevLife.Domain.Modules.Materials;
+using DevLife.Application.Modules.Materials.DTOs;
 
 namespace DevLife.Application.Modules.Materials.Interfaces.Services;
 
 public interface IMaterialService
 {
-    Task<List<Material>> GetAllAsync();
+    Task<List<MaterialDto>> GetAllAsync();
+    Task<MaterialDto?> GetByIdAsync(Guid id);
 }

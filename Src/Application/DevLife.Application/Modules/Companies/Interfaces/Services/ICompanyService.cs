@@ -1,4 +1,4 @@
-﻿using DevLife.Domain.Modules.Companies;
+﻿using DevLife.Application.Modules.Companies.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace DevLife.Application.Modules.Companies.Interfaces.Services
 {
     public interface ICompanyService
     {
-        Task<List<Company>> GetAllAsync();
+        Task<List<CompanyDto>> GetAllAsync();
 
     }
 }
