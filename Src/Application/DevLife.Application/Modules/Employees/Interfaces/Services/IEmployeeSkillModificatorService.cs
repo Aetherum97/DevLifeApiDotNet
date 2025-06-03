@@ -1,4 +1,4 @@
-﻿using DevLife.Domain.Modules.Employees;
+﻿using DevLife.Application.Modules.Employees.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace DevLife.Application.Modules.Employees.Interfaces.Services
 {
     public interface IEmployeeSkillModificatorService
     {
-        Task<List<EmployeeSkillModificator>> GetAllAsync();
+        Task<List<EmployeeSkillModificatorDto>> GetAllAsync();
 
     }
 }
