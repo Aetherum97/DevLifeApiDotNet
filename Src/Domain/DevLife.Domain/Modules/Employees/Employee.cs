@@ -19,8 +19,8 @@ public class Employee : AuditableBaseEntity
 
 
     // Relation
-    public required EmployeeName EmployeeName { get; set; }
-    public required ICollection<EmployeeSkill>? EmployeeSkills { get; set; }
-    public required CompanyEmployee CompanyEmployee { get; set; }
-   
+    public EmployeeName? EmployeeName { get; set; }
+    public ICollection<EmployeeSkill>? EmployeeSkills { get; set; }
+    public CompanyEmployee? CompanyEmployee { get; set; }
+
 }
