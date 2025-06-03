@@ -12,7 +12,5 @@ namespace DevLife.Application.Commons.DTOs
         public Guid CompanyId { get; set; }
         public Guid EmployeeId { get; set; }
         public Guid ContractId { get; set; }
-        public CompanyContractDto? CompanyContract { get; set; }
-        public CompanyEmployeeDto? CompanyEmployee { get; set; }
     }
 }
