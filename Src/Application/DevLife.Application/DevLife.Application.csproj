@@ -15,6 +15,7 @@
     <Folder Include="Modules/Auth/" />
     <Folder Include="Modules/Auth/DTOs/" />
     <Folder Include="Modules/Auth/Interfaces/" />
+    <Folder Include="Modules\Materials\Factories\" />
   </ItemGroup>
 
   <ItemGroup>

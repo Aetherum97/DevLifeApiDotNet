@@ -1,6 +1,6 @@
-﻿using DevLife.Application.Modules.Companies.Interfaces.Repositories;
+﻿using DevLife.Application.Modules.Companies.DTOs;
+using DevLife.Application.Modules.Companies.Interfaces.Repositories;
 using DevLife.Application.Modules.Companies.Interfaces.Services;
-using DevLife.Domain.Modules.Companies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,11 @@ namespace DevLife.Application.Modules.Companies.Services
 {
     public class CompanyService(ICompanyRepository companyRepository) : ICompanyService
     {
-        public async Task<List<Company>> GetAllAsync()
+        public async Task<List<CompanyDto>> GetAllAsync()
         {
-            return await companyRepository.GetAllAsync();
+            var result = await companyRepository.GetAllAsync();
+            var response = result.Select(item => new CompanyDto(item)).ToList() ?? [];
+            return response;
         }
     }
 }
