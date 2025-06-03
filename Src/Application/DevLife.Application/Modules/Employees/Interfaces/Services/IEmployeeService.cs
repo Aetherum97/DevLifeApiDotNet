@@ -1,4 +1,5 @@
-﻿using DevLife.Domain.Modules.Employees;
+﻿using DevLife.Application.Modules.Employees.DTOs;
+using DevLife.Domain.Modules.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DevLife.Application.Modules.Employees.Interfaces.Services
 {
     public interface IEmployeeService
     {
-        Task<List<Employee>> GetAllAsync();
+        Task<List<EmployeeDto>> GetAllAsync();
 
     }
 }
