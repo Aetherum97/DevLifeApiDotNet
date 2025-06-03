@@ -12,9 +12,6 @@ namespace DevLife.Application.Modules.Companies.DTOs
         public Guid Id { get; set; }
         public string? Name { get; set; }
         public int Experience { get; set; }
-        public PlayerDto? Player { get; set; }
-        public IEnumerable<CompanyEmployeeDto>? CompanyEmployees { get; set; }
-        public IEnumerable<CompanyContractDto>? CompanyContracts { get; set; }
-        public IEnumerable<CompanyMaterialDto>? CompanyMaterials { get; set; }
+        public Guid PlayerId { get; set; }
     }
 }

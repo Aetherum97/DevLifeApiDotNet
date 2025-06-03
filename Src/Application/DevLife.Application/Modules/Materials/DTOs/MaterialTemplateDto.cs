@@ -9,7 +9,7 @@ namespace DevLife.Application.Modules.Materials.DTOs
     public class MaterialTemplateDto
     {
         public Guid Id { get; set; }
-        public Guid MaterialSkillId { get; set; }
+        public Guid companyId { get; set; }
         public required string Name { get; set; }
         public required string Type { get; set; }
         public required string Description { get; set; }
