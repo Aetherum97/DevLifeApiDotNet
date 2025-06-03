@@ -1,4 +1,5 @@
-﻿using DevLife.Application.Modules.Materials.Interfaces.Repositories;
+﻿using DevLife.Application.Modules.Materials.DTOs;
+using DevLife.Application.Modules.Materials.Interfaces.Repositories;
 using DevLife.Application.Modules.Materials.Interfaces.Services;
 using DevLife.Domain.Modules.Materials;
 using System;
@@ -11,9 +12,11 @@ namespace DevLife.Application.Modules.Materials.Services
 {
     public class MaterialTemplateService(IMaterialTemplateRepository materialTemplateRepository) : IMaterialTemplateService
     {
-        public async Task<List<MaterialTemplate>> GetAllAsync()
+        public async Task<List<MaterialTemplateDto>> GetAllAsync()
         {
-            return await materialTemplateRepository.GetAllAsync();
+            var result = await materialTemplateRepository.GetAllAsync();
+            var response = (result ?? []).Select(item => new MaterialTemplateDto(item)).ToList();
+            return response;
         }
     }
 }

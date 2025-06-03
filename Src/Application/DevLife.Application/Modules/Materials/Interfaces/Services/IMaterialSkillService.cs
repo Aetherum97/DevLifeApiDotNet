@@ -1,4 +1,4 @@
-﻿using DevLife.Domain.Modules.Materials;
+﻿using DevLife.Application.Modules.Materials.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace DevLife.Application.Modules.Materials.Interfaces.Services
 {
     public interface IMaterialSkillService
     {
-        Task<List<MaterialSkill>> GetAllAsync();
+        Task<List<MaterialSkillDto>> GetAllAsync();
 
     }
 }
