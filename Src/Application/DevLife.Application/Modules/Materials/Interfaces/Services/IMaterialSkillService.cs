@@ -10,6 +10,8 @@ namespace DevLife.Application.Modules.Materials.Interfaces.Services
     public interface IMaterialSkillService
     {
         Task<List<MaterialSkillDto>> GetAllAsync();
+        Task<MaterialSkillDto?> GetByIdAsync(Guid id);
+        Task<MaterialSkillDto> CreateAsync(MaterialSkillDto materialSkillDto);
 
     }
 }
