@@ -35,7 +35,7 @@ namespace DevLife.Infrastructure.Identity
             }
 
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-            services.AddScoped<IAuthService, AuthtService>();
+            services.AddScoped<IAuthManager, AuthtManager>();
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<ITokenAccessService, TokenAccessService>();
             services.AddScoped<ITokenRefreshService, TokenRefreshService>();

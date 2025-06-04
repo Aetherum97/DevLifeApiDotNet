@@ -1,6 +1,7 @@
-﻿using FluentValidation;
+using System;
+using FluentValidation;
 
-namespace DevLife.Application.Commons.Services;
+namespace DevLife.Application.Modules.Auth.Services;
 
 public static class ValidationService
 {

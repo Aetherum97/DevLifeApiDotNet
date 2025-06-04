@@ -13,9 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Commons/Helpers/" />
-    <Folder Include="Modules/Auth/" />
     <Folder Include="Modules/Auth/DTOs/" />
-    <Folder Include="Modules/Auth/Interfaces/" />
     <Folder Include="Modules\Materials\Factories\" />
   </ItemGroup>
 

@@ -25,7 +25,7 @@ public class EmployeeService(
 
     public async Task<EmployeeDto> CreateAsync(EmployeeCreateRequest request)
     {
-        var userId = await authenticatedUser.GetAdminUserIdInDevelopmentAsync() ?? authenticatedUser.GetUserId();
+        var userId = authenticatedUser.GetUserId();
 
         var employeeSkills = await GetEmployeeSkillsAsync(request.EmployeeSkills);
         var CompanyId = await companyAccessor.GetCompanyIdForUserAsync(userId);
