@@ -1,5 +1,6 @@
 using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
+using DevLife.Application.Modules.Employees.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,15 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
     {
         var response = await employeeService.GetAllAsync();
         return Ok(response);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateRequest request)
+    {
+
+        var result = await employeeService.CreateAsync(request);
+        return Ok(result);
+
     }
 }
 
