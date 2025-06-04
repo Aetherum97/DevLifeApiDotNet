@@ -54,12 +54,12 @@ using (var scope = app.Services.CreateScope())
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
 
-    var user = await userManager.FindByNameAsync("admin");
 
     await DefaultRole.SeedAsync(roleManager);
     await DefaultUser.SeedAsync(userManager);
 
-    
+    var user = await userManager.FindByNameAsync("admin");
+
     await DefaultCompanySeed.SeedAsync(appDb);
     await DefaultPlayerSeed.SeedAsync(appDb, user!.Id);
 

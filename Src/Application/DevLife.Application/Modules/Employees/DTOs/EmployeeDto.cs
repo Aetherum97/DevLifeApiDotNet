@@ -15,7 +15,7 @@ public class EmployeeDto
     public EmployeeDto(Employee employee)
     {
         Id = employee.Id;
-        CompanyId = employee.CompanyEmployee.CompanyId;
+        CompanyId = employee.CompanyEmployee!.CompanyId;
         Salary = employee.Salary;
         Level = employee.Level;
         Experience = employee.Experience;
