@@ -29,5 +29,19 @@ namespace DevLife.Web.Api.Modules.Materials
 
             return Ok(dto);
         }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            try
+            {
+                await materialService.DeleteAsync(id);
+                return NoContent();
+            }
+            catch (InvalidOperationException)
+            {
+                return NotFound();
+            }
+        }
     }
 }

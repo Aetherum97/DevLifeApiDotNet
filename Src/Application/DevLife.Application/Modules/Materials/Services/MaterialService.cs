@@ -34,6 +34,15 @@ namespace DevLife.Application.Modules.Materials.Services
 
         }
 
+        public async Task DeleteAsync(Guid id)
+        {
+            var toDelete = await materialRepository.GetByIdAsync(id);
+            if (toDelete == null)
+                throw new InvalidOperationException($"Material {id} not found.");
+
+            await materialRepository.DeleteAsync(toDelete);
+        }
+
 
 
     }

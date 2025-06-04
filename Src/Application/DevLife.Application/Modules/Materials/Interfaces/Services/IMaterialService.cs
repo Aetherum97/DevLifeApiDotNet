@@ -7,4 +7,6 @@ public interface IMaterialService
     Task<List<MaterialDto>> GetAllAsync();
     Task<MaterialDto?> GetByIdAsync(Guid id);
     Task<MaterialDto> CreateAsync(MaterialDto materialDto);
+    Task DeleteAsync(Guid id);
+
 }
