@@ -34,8 +34,10 @@ public class EmployeeService(
 
     public async Task<EmployeeDto> CreateAsync(EmployeeCreateRequest request)
     {
-        var employeeSkills = await employeeSkillRepository.GetEmployeeSkillsAsync(request.EmployeeSkills);
-        var CompanyId = await GetCompanyIdFromUserAsync();
+        var userId = authenticatedUser.GetUserId();
+
+        var employeeSkills = await GetEmployeeSkillsAsync(request.EmployeeSkills);
+        var CompanyId = await companyAccessor.GetCompanyIdForUserAsync(userId);
 
         var entity = EmployeeDtoFactory.Create(request, employeeSkills, CompanyId);
         var result = await employeeRepository.AddAsync(entity);

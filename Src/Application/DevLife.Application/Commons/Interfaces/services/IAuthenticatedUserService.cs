@@ -3,9 +3,10 @@
 public interface IAuthenticatedUserService
 {
     string UserId { get; }
+    string CompanyId { get; }
     string UserName { get; }
 
 
     Guid GetUserId();
-    Task<Guid?> GetAdminUserIdInDevelopmentAsync();
+    Guid GetCompanyId();
 }

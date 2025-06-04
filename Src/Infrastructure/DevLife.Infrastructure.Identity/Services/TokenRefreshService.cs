@@ -1,4 +1,5 @@
-﻿using DevLife.Application.Modules.Auth.DTOs;
+﻿using DevLife.Application.Commons.Interfaces.Services.Accessors;
+using DevLife.Application.Modules.Auth.DTOs;
 using DevLife.Infrastructure.Identity.Entity;
 using DevLife.Infrastructure.Identity.Interfaces.Repositories;
 using DevLife.Infrastructure.Identity.Interfaces.Services;
@@ -8,14 +9,21 @@ using System.Security.Claims;
 
 namespace DevLife.Infrastructure.Identity.Services
 {
-    class TokenRefreshService(IRefreshTokenRepository refreshTokenRepository, JwtSettings jwtSettings) : JwtService(jwtSettings), ITokenRefreshService
+    class TokenRefreshService(IRefreshTokenRepository refreshTokenRepository, JwtSettings jwtSettings, IUserCompanyAccessor companyAccessor) : JwtService(jwtSettings), ITokenRefreshService
     {
-        public async Task<RefreshToken> GenerateRefreshTokenAsync(AppUser user, IEnumerable<Claim> claims)
+        public async Task<RefreshToken> GenerateRefreshTokenAsync(AppUser user, IEnumerable<Claim> userClaim)
         {
             var signingCredentials = GetSigningCredentials();
             var expirationDate = DateTime.Now.AddDays(7);
-            var jwtSecurityToken = CreateJwtToken(claims, signingCredentials, expirationDate);
+            var userId = userClaim.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var companyId = await companyAccessor.GetCompanyIdForUserAsync(Guid.Parse(userId!));
 
+            var claims = new List<Claim>(userClaim)
+            {
+                new("companyId", companyId.ToString())
+            };
+
+            var jwtSecurityToken = CreateJwtToken(claims, signingCredentials, expirationDate);
 
             var refreshToken = new RefreshToken
             {

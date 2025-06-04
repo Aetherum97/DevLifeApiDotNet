@@ -10,8 +10,7 @@ public static class EntityFrameworkExtensions
 
     public static void ApplyAuditing(this ChangeTracker changeTracker, IAuthenticatedUserService authenticatedUser)
     {
-        var userId = string.IsNullOrEmpty(authenticatedUser.UserId)
-            ? Guid.Empty : Guid.Parse(authenticatedUser.UserId);
+        var userId = authenticatedUser.GetUserId();
 
         var currentTime = DateTime.UtcNow;
 

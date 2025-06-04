@@ -3,7 +3,7 @@ using DevLife.Application.Modules.Auth.DTOs.Response;
 
 namespace DevLife.Application.Modules.Auth.Interfaces.Services;
 
-public interface IAuthService
+public interface IAuthManager
 {
     public Task<RegisterResponse> RegisterAccountAsync(RegisterRequest registerRequest, string password);
     public Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
