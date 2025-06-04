@@ -15,8 +15,8 @@ public class Contract : AuditableBaseEntity
     public required int Reward { get; set; }
 
     //Relation
-    public required CompanyContract CompanyContract { get; set; }
-    public required ContractTemplate ContractTemplate { get; set; }
+    public CompanyContract? CompanyContract { get; set; }
+    public ContractTemplate? ContractTemplate { get; set; }
     
 
 }

@@ -13,6 +13,11 @@ namespace DevLife.Application.Modules.Materials.Services
 {
     public class MaterialService(IMaterialRepository materialRepository) : IMaterialService
     {
+        public Task<MaterialDto> CreateAsync(MaterialDto materialDto)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<MaterialDto>> GetAllAsync()
         {
             var result = await materialRepository.GetAllAsync();
@@ -28,6 +33,8 @@ namespace DevLife.Application.Modules.Materials.Services
             return new MaterialDto(result);
 
         }
+
+
 
     }
 }

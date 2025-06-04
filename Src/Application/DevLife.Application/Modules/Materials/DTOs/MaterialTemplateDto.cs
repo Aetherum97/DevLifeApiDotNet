@@ -26,10 +26,10 @@ namespace DevLife.Application.Modules.Materials.DTOs
         }
         public Guid Id { get; set; }
         public Guid CompanyId { get; set; }
-        public required string Name { get; set; }
-        public required string Type { get; set; }
-        public required string Description { get; set; }
-        public required string ImageUrl { get; set; }
+        public string? Name { get; set; }
+        public string? Type { get; set; }
+        public string? Description { get; set; }
+        public string? ImageUrl { get; set; }
         public MaterialSkillDto? MaterialSkill { get; set; }
     }
 }
