@@ -15,9 +15,9 @@ public class ContractDto
     public ContractDto(Contract contract)
     {
         Id = contract.Id;
-        Title = contract.ContractTemplate.Title;
+        Title = contract.ContractTemplate!.Title;
         Type = new ContractTypeDto(contract.ContractTemplate.ContractTypes!);
-        ContractCompany = contract.CompanyContract.CompanyId;
+        ContractCompany = contract.CompanyContract!.CompanyId;
         AssignedEmployees = contract.CompanyContract.AssignedEmployees?
             .Select(e => e.EmployeeId)
             .ToList() ?? [];
