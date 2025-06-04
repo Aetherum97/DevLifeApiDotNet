@@ -15,7 +15,7 @@ public class EmployeeDto
     public EmployeeDto(Employee employee)
     {
         Id = employee.Id;
-        CompanyId = employee.CompanyEmployee!.CompanyId;
+        CompanyId = employee.CompanyEmployee.CompanyId;
         Salary = employee.Salary;
         Level = employee.Level;
         Experience = employee.Experience;
@@ -27,8 +27,6 @@ public class EmployeeDto
         EmployeeName = new EmployeeNameDto(employee.EmployeeName!);
         EmployeeSkills = employee.EmployeeSkills?
             .Select(s => new EmployeeSkillDto(s)).ToList() ?? [];
-
-
     }
 
     public Guid Id { get; set; }

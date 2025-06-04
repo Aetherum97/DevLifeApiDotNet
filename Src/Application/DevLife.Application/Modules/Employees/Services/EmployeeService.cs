@@ -1,17 +1,19 @@
-﻿using DevLife.Application.Modules.Employees.DTOs;
+﻿using DevLife.Application.Commons.Interfaces.Services;
+using DevLife.Application.Commons.Interfaces.Services.Accessors;
+using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.Factories;
 using DevLife.Application.Modules.Employees.Interfaces.Repositories;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
 using DevLife.Domain.Modules.Employees;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevLife.Application.Modules.Employees.Services;
 
-public class EmployeeService(IEmployeeRepository employeeRepository, IEmployeeSkillRepository employeeSkillRepository) : IEmployeeService
+public class EmployeeService(
+    IEmployeeRepository employeeRepository,
+    IEmployeeSkillRepository employeeSkillRepository,
+    IAuthenticatedUserService authenticatedUser,
+    IUserCompanyAccessor companyAccessor
+) : IEmployeeService
 {
     public async Task<List<EmployeeDto>> GetAllAsync()
     {
@@ -23,16 +25,20 @@ public class EmployeeService(IEmployeeRepository employeeRepository, IEmployeeSk
 
     public async Task<EmployeeDto> CreateAsync(EmployeeCreateRequest request)
     {
+        var userId = await authenticatedUser.GetAdminUserIdInDevelopmentAsync() ?? authenticatedUser.GetUserId();
 
         var employeeSkills = await GetEmployeeSkillsAsync(request.EmployeeSkills);
-        var entity = EmployeeDtoFactory.Create(request, employeeSkills);
+        var CompanyId = await companyAccessor.GetCompanyIdForUserAsync(userId);
 
+        var entity = EmployeeDtoFactory.Create(request, employeeSkills, CompanyId);
+        
         var result = await employeeRepository.AddAsync(entity);
         var response = new EmployeeDto(result);
+
         return response;
     }
 
-    public async Task<List<EmployeeSkill>> GetEmployeeSkillsAsync(IEnumerable<Guid> skillIds)
+    private async Task<List<EmployeeSkill>> GetEmployeeSkillsAsync(IEnumerable<Guid> skillIds)
     {
         var skillTasks = skillIds.Select(async id =>
         {

@@ -20,7 +20,7 @@ public class Employee : AuditableBaseEntity
 
     // Relation
     public EmployeeName? EmployeeName { get; set; }
-    public ICollection<EmployeeSkill>? EmployeeSkills { get; set; }
-    public CompanyEmployee? CompanyEmployee { get; set; }
+    public ICollection<EmployeeSkill> EmployeeSkills { get; set; } = [];
+    public CompanyEmployee? CompanyEmployee { get; set; } 
 
 }
