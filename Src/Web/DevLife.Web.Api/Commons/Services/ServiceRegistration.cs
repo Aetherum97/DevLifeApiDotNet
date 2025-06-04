@@ -1,6 +1,7 @@
 using System;
 using DevLife.Application.Commons.Interfaces.Services;
 
+
 namespace DevLife.Web.Api.Commons.Services;
 
 public static class ServiceRegistration
@@ -16,6 +17,7 @@ public static class ServiceRegistration
     private static void RegisterServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
+       
     }
 }
 

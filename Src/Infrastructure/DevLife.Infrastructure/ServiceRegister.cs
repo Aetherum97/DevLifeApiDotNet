@@ -1,5 +1,7 @@
 using DevLife.Application.Commons.Interfaces.Repositories;
+using DevLife.Application.Commons.Interfaces.Services.Accessors;
 using DevLife.Infrastructure.Commons.Bases;
+using DevLife.Infrastructure.Modules.Services;
 using DevLife.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +26,7 @@ public static class ServiceRegister
         }
 
         services.RegisterRepositories();
+        services.AddScoped<IUserCompanyAccessor, UserCompanyAccessor>();
 
         return services;
     }

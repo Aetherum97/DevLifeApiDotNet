@@ -4,6 +4,9 @@ using DevLife.Infrastructure.Identity;
 using DevLife.Infrastructure.Identity.Entity;
 using DevLife.Infrastructure.Identity.Persistence.Contexts;
 using DevLife.Infrastructure.Identity.Persistence.Seeds;
+using DevLife.Infrastructure.Modules.Companies.Seeds;
+using DevLife.Infrastructure.Modules.Employees.Seeds.Default;
+using DevLife.Infrastructure.Modules.Employees.Seeds.Defaults;
 using DevLife.Infrastructure.Persistence.Contexts;
 using DevLife.Shared.Mapper;
 using DevLife.Web.Api.Commons.Extenssions;
@@ -34,14 +37,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-
+    var identityDb = services.GetRequiredService<AppIdentityDbContext>();
+    var appDb = services.GetRequiredService<AppDbContext>();
+    
     if (!useInMemoryDatabase)
     {
-        var identityDb = services.GetRequiredService<AppIdentityDbContext>();
-        var appDb = services.GetRequiredService<AppDbContext>();
-
-        // await DatabaseHelper.EnsureDatabaseReadyAsync(identityDb);
-        // await DatabaseHelper.EnsureDatabaseReadyAsync(appDb);
 
         if ((await identityDb.Database.GetPendingMigrationsAsync()).Any())
 
@@ -54,8 +54,19 @@ using (var scope = app.Services.CreateScope())
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
 
+    var user = await userManager.FindByNameAsync("admin");
+
     await DefaultRole.SeedAsync(roleManager);
     await DefaultUser.SeedAsync(userManager);
+
+    
+    await DefaultCompanySeed.SeedAsync(appDb);
+    await DefaultPlayerSeed.SeedAsync(appDb, user!.Id);
+
+    await DefaultEmployeeSkillModificatorSeed.SeedAsync(appDb);
+    await DefaultEmployeeSkillSeed.SeedAsync(appDb);
+    await DefaultEmployeeNameSeed.SeedAsync(appDb);
+    await DefaultEmployeeSeed.SeedAsync(appDb);
 }
 
 app.UseDevelopementCors();

@@ -17,22 +17,22 @@ public class EmployeeDto
         Id = employee.Id;
         CompanyId = employee.CompanyEmployee.CompanyId;
         Salary = employee.Salary;
+        Level = employee.Level;
         Experience = employee.Experience;
         CFrontEnd = employee.CFrontEnd;
         CBackEnd = employee.CBackEnd;
         CDevops = employee.CDevops;
         CDatabase = employee.CDatabase;
         IsAvalaible = employee.IsAvalaible;
-        EmployeeName = new EmployeeNameDto(employee.EmployeeName);
+        EmployeeName = new EmployeeNameDto(employee.EmployeeName!);
         EmployeeSkills = employee.EmployeeSkills?
             .Select(s => new EmployeeSkillDto(s)).ToList() ?? [];
-
-
     }
 
     public Guid Id { get; set; }
     public Guid CompanyId { get; set; }
     public int Salary { get; set; }
+    public int Level { get; set; }
     public int Experience { get; set; }
     public int CFrontEnd { get; set; }
     public int CBackEnd { get; set; }

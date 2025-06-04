@@ -12,7 +12,7 @@ public abstract class BaseRepository<T>(DbContext dbContext) : IBaseRepository<T
         return await dbContext.Set<T>().AsNoTracking().ToListAsync();
     }
 
-    public virtual async Task<T> GetByIdAsync(object id)
+    public virtual async Task<T> GetByIdAsync(Guid id)
     {
         return await dbContext.Set<T>().FindAsync(id) ?? throw new InvalidOperationException("Ressources not Found");
     }
@@ -21,7 +21,7 @@ public abstract class BaseRepository<T>(DbContext dbContext) : IBaseRepository<T
     {
         await dbContext.Set<T>().AddAsync(entity);
         await dbContext.SaveChangesAsync();
-        return entity;
+        return await GetByIdAsync(entity.Id);
     }
 
     public virtual async Task<T> UpdateAsync(T entity)

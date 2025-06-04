@@ -12,6 +12,6 @@ public class Player : AuditableBaseEntity
     public Guid UserId { get; set; }
 
     // Relation
-    public required Company Compagny { get; set; }
+    public Company? Compagny { get; set; }
 
 }
