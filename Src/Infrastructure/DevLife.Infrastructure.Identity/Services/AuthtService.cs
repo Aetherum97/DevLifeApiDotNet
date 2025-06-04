@@ -7,12 +7,12 @@ using System.Net;
 
 namespace DevLife.Infrastructure.Identity.Services
 {
-    public class AuthtService(
+    public class AuthtManager(
         IAppUserService appUserService,
         ITokenAccessService tokenAccessService,
         ITokenRefreshService tokenRefreshService,
         IRegisterMailerService registerMailerService,
-        JwtSettings jwtSettings) : IAuthService
+        JwtSettings jwtSettings) : IAuthManager
     {
         public async Task<RegisterResponse> RegisterAccountAsync(RegisterRequest registerRequest, string password)
         {
@@ -37,7 +37,7 @@ namespace DevLife.Infrastructure.Identity.Services
 
             await tokenRefreshService.DeleteRefreshTokenAsync(user);
 
-            var accessToken = tokenAccessService.GenerateAccessToken(userClaims);
+            var accessToken = await tokenAccessService.GenerateAccessToken(userClaims);
             var refreshToken = await tokenRefreshService.GenerateRefreshTokenAsync(user, userClaims);
 
             return new LoginResponse
@@ -65,7 +65,7 @@ namespace DevLife.Infrastructure.Identity.Services
             }
 
             var userClaims = await appUserService.GenarateClaimsAsync(refreshToken.User);
-            var newAccessToken = tokenAccessService.GenerateAccessToken(userClaims);
+            var newAccessToken = await tokenAccessService.GenerateAccessToken(userClaims);
 
             return new AuthenticateResponse
             {

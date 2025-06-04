@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -13,6 +14,7 @@ namespace DevLife.Application
     {
         public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
         {
+            RegisterValidators(services);
             RegisterServices(services);
             RegisterHelpers(services);
             return services;
@@ -46,6 +48,26 @@ namespace DevLife.Application
                 {
                     Console.WriteLine($"No implementation found for {serviceInterface.Name}");
                 }
+            }
+        }
+
+        private static void RegisterValidators(this IServiceCollection services)
+        {
+            var validatorBaseType = typeof(AbstractValidator<>);
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var validatorTypes = assembly.GetTypes()
+                .Where(t => !t.IsAbstract && !t.IsInterface && t.BaseType != null
+                            && t.BaseType.IsGenericType
+                            && t.BaseType.GetGenericTypeDefinition() == validatorBaseType)
+                .ToList();
+
+            foreach (var validatorType in validatorTypes)
+            {
+                var modelType = validatorType.BaseType!.GetGenericArguments()[0];
+                var interfaceType = typeof(IValidator<>).MakeGenericType(modelType);
+
+                services.AddScoped(interfaceType, validatorType);
             }
         }
 
