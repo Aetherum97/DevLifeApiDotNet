@@ -11,23 +11,23 @@ public static class DefaultMaterialTemplateSeed
         if (await context.Set<MaterialTemplate>().AnyAsync())
             return;
 
-        var firstSkill = await context.Set<MaterialSkill>()
+        var skills = await context.Set<MaterialSkill>()
                                       .AsNoTracking()
-                                      .FirstOrDefaultAsync();
-        if (firstSkill == null)
+                                      .ToListAsync();
+        if (skills == null)
             throw new InvalidOperationException("MaterialSkill must be exist before seeding.");
 
         var materialTemplates = new List<MaterialTemplate>
             {
                 new() {
-                    MaterialSkillId = firstSkill.Id,
+                    MaterialSkillId = skills[0].Id,
                     Name = "Chaise de bureau",
                     Type = "Bureautique",
                     Description = "Chaise de bureau standard",
                     ImageUrl = "https://example.com/images/chair.png"
                 },
                 new() {
-                    MaterialSkillId = firstSkill.Id,
+                    MaterialSkillId = skills[1].Id,
                     Name = "Écran 144hz",
                     Type = "Bureautique",
                     Description = "Écran de pc en 144hz",

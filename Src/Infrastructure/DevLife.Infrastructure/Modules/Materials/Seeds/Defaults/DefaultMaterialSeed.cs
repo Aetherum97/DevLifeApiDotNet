@@ -1,4 +1,5 @@
 ﻿using DevLife.Domain.Commons.Entity;
+using DevLife.Domain.Modules.Companies;
 using DevLife.Domain.Modules.Materials;
 using DevLife.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -12,32 +13,35 @@ public static class DefaultMaterialSeed
         if (await context.Set<Material>().AnyAsync())
             return;
 
-        var firstCompany = await context.Set<Domain.Modules.Companies.Company>()
+        var firstCompany = await context.Set<Company>()
                                         .AsNoTracking()
                                         .FirstOrDefaultAsync();
         if (firstCompany == null)
             throw new InvalidOperationException("Company must be exist before seeding.");
 
-        var firstTemplate = await context.Set<MaterialTemplate>()
-                                         .AsNoTracking()
-                                         .FirstOrDefaultAsync();
-        if (firstTemplate == null)
-            throw new InvalidOperationException("MaterialTemplate must be exist before seeding.");
+        var templates = await context.Set<MaterialTemplate>()
+                                     .AsNoTracking()
+                                     .ToListAsync();
+        if (templates.Count == 0)
+            throw new InvalidOperationException("MaterialTemplate must be seeded");
 
-        var material = new Material
+        foreach (var template in templates)
         {
-            MaterialTemplateId = firstTemplate.Id
-        };
+            var material = new Material
+            {
+                MaterialTemplateId = template.Id
+            };
+            var companyMaterial = new CompanyMaterial
+            {
+                MaterialId = material.Id,
+                CompanyId = firstCompany.Id,
+                Material = material
+            };
 
-        var companyMaterial = new CompanyMaterial
-        {
-            MaterialId = material.Id,
-            CompanyId = firstCompany.Id,
-            Material = material
-        };
+            context.Set<Material>().Add(material);
+            context.Set<CompanyMaterial>().Add(companyMaterial);
+        }
 
-        context.Set<Material>().Add(material);
-        context.Set<CompanyMaterial>().Add(companyMaterial);
         await context.SaveChangesAsync();
     }
 }

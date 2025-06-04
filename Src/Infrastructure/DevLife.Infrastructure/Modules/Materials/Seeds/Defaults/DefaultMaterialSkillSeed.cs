@@ -13,9 +13,8 @@ public static class DefaultMaterialSkillSeed
 
         var materialSkills = new List<MaterialSkill>
             {
-                new MaterialSkill { Name = "Design"   , Modificator = 5 },
-                new MaterialSkill { Name = "Backend"  , Modificator = 10 },
-                new MaterialSkill { Name = "DevOps"   , Modificator = 8 }
+                new() { Name = "Confort"   , Modificator = 5 },
+                new() { Name = "Visuel"  , Modificator = 10 }
             };
 
         context.Set<MaterialSkill>().AddRange(materialSkills);

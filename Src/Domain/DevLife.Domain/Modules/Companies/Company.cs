@@ -12,9 +12,9 @@ public class Company : AuditableBaseEntity
 
     // Relations
     public Player? Player { get; set; }
-    public ICollection<CompanyEmployee>? CompanyEmployees { get; set; }
-    public ICollection<CompanyContract>? CompanyContracts { get; set; }
-    public ICollection<CompanyMaterial>? CompanyMaterials { get; set; }
+    public ICollection<CompanyEmployee> CompanyEmployees { get; set; } = [];
+    public ICollection<CompanyContract> CompanyContracts { get; set; } = [];
+    public ICollection<CompanyMaterial> CompanyMaterials { get; set; } = [];
 
 
 }
