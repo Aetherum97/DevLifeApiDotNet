@@ -900,8 +900,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("DevLife.Domain.Modules.Contracts.Contract", b =>
                 {
-                    b.Navigation("CompanyContract")
-                        .IsRequired();
+                    b.Navigation("CompanyContract");
                 });
 
             modelBuilder.Entity("DevLife.Domain.Modules.Contracts.ContractTemplate", b =>
@@ -916,8 +915,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("DevLife.Domain.Modules.Employees.Employee", b =>
                 {
-                    b.Navigation("CompanyEmployee")
-                        .IsRequired();
+                    b.Navigation("CompanyEmployee");
                 });
 
             modelBuilder.Entity("DevLife.Domain.Modules.Employees.EmployeeName", b =>
@@ -927,8 +925,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("DevLife.Domain.Modules.Materials.Material", b =>
                 {
-                    b.Navigation("CompanyMaterial")
-                        .IsRequired();
+                    b.Navigation("CompanyMaterial");
                 });
 
             modelBuilder.Entity("DevLife.Domain.Modules.Materials.MaterialSkill", b =>
