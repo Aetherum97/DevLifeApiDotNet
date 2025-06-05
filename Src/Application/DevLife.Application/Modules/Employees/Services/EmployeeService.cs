@@ -12,8 +12,7 @@ namespace DevLife.Application.Modules.Employees.Services;
 public class EmployeeService(
     IEmployeeRepository employeeRepository,
     IEmployeeSkillRepository employeeSkillRepository,
-    IAuthenticatedUserService authenticatedUser,
-    IUserCompanyAccessor companyAccessor
+    IAuthenticatedUserService authenticatedUser
 ) : IEmployeeService
 {
     public async Task<List<EmployeeDto>> GetAllAsync()
@@ -34,11 +33,9 @@ public class EmployeeService(
 
     public async Task<EmployeeDto> CreateAsync(EmployeeCreateRequest request)
     {
-        var userId = authenticatedUser.GetUserId();
+        var CompanyId = authenticatedUser.GetCompanyId();
 
-        var employeeSkills = await GetEmployeeSkillsAsync(request.EmployeeSkills);
-        var CompanyId = await companyAccessor.GetCompanyIdForUserAsync(userId);
-
+        var employeeSkills = await employeeSkillRepository.GetEmployeeSkillsAsync(request.EmployeeSkills);
         var entity = EmployeeDtoFactory.Create(request, employeeSkills, CompanyId);
         var result = await employeeRepository.AddAsync(entity);
 
@@ -58,7 +55,7 @@ public class EmployeeService(
 
     public async Task<EmployeeDto> DeleteAsync(EmployeeDeleteRequest request)
     {
-        var companyId = await GetCompanyIdFromUserAsync();
+        var companyId = authenticatedUser.GetCompanyId();
         if (companyId != request.CompanyId) throw new UnauthorizedAccessException("not authorized");
 
         var employee = await employeeRepository.GetByIdAsync(request.Id);
@@ -66,14 +63,6 @@ public class EmployeeService(
 
         var response = new EmployeeDto(result);
         return response;
-    }
-
-    private async Task<Guid> GetCompanyIdFromUserAsync()
-    {
-        var userId = await authenticatedUser.GetAdminUserIdInDevelopmentAsync() ?? authenticatedUser.GetUserId();
-        var CompanyId = await companyAccessor.GetCompanyIdForUserAsync(userId);
-
-        return CompanyId;
     }
 }
 
