@@ -6,5 +6,5 @@ namespace DevLife.Application.Modules.Employees.Interfaces.Repositories;
 
 public interface IEmployeeSkillRepository : IBaseRepository<EmployeeSkill>
 {
-
+    Task<List<EmployeeSkill>> GetEmployeeSkillsAsync(IEnumerable<Guid> skillIds);
 }

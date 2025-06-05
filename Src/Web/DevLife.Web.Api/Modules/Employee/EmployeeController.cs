@@ -1,5 +1,7 @@
 using DevLife.Application.Modules.Employees.DTOs;
+using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
+
 using DevLife.Application.Modules.Employees.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,11 +22,44 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
     }
 
     [Authorize]
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<List<EmployeeDto>>> GetById(Guid id)
+    {
+        var response = await employeeService.GetByIdAsync(id);
+        return Ok(response);
+    }
+
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateRequest request)
     {
 
         var result = await employeeService.CreateAsync(request);
+        return Ok(result);
+
+    }
+
+    [Authorize]
+    [HttpPut]
+    public async Task<ActionResult<EmployeeDto>> Update(EmployeeUpdateRequest request)
+    {
+
+        var result = await employeeService.UpdateAsync(request);
+        return Ok(result);
+
+    }
+
+    [Authorize]
+    [HttpDelete("{employeId:guid}")]
+    public async Task<ActionResult<EmployeeDto>> Delete(Guid employeId, EmployeeDeleteRequest request)
+    {
+
+        if (employeId != request.Id)
+        {
+            return BadRequest("Employee ID in the URL does not match the ID in the request.");
+        }
+
+        var result = await employeeService.DeleteAsync(request);
         return Ok(result);
 
     }
