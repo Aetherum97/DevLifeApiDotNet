@@ -15,18 +15,25 @@ public class AuthenticatedUserService(
     public string UserName { get; } = httpContextAccessor.HttpContext?.User.Identity?.Name!;
     public Guid GetUserId()
     {
-
-        return UserId is not null && Guid.TryParse(UserId, out var parsed)
-            ? parsed
-            : throw new UnauthorizedAccessException("User is not authenticated or has an invalid ID.");
+        var httpContext = httpContextAccessor.HttpContext;
+        if (httpContext?.User?.Identity?.IsAuthenticated != true)
+        {
+            return Guid.Empty;
+        }
+        var userIdString = httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        return Guid.TryParse(userIdString, out var parsed) ? parsed : Guid.Empty;
     }
 
     public Guid GetCompanyId()
     {
+        var httpContext = httpContextAccessor.HttpContext;
+        if (httpContext?.User?.Identity?.IsAuthenticated != true)
+            return Guid.Empty;
 
-        return CompanyId is not null && Guid.TryParse(CompanyId, out var parsed)
+        var companyIdString = httpContext.User.FindFirstValue("companyId");
+        return Guid.TryParse(companyIdString, out var parsed)
             ? parsed
-            : throw new UnauthorizedAccessException("User is not authenticated or has an invalid ID.");
+            : Guid.Empty;
     }
 
 }
