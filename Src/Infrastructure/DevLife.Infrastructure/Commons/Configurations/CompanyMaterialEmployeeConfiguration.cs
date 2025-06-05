@@ -23,6 +23,11 @@ public class CompanyMaterialEmployeeConfiguration : IEntityTypeConfiguration<Com
             .WithMany(c => c.AssignedMaterial)
             .HasForeignKey(cme => new { cme.CompanyId, cme.MaterialId })
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Ignore(cme => cme.CreatedAt);
+        builder.Ignore(cme => cme.CreatedBy);
+        builder.Ignore(cme => cme.ModifiedAt);
+        builder.Ignore(cme => cme.LastModifiedBy);
     }
 }
 
