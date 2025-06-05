@@ -1,7 +1,5 @@
-using System;
 using System.Runtime.InteropServices;
-using DevLife.Application.Modules.Employees.DTOs;
-using DevLife.Application.Modules.Employees.Services;
+using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Domain.Commons.Entity;
 using DevLife.Domain.Modules.Employees;
 
@@ -36,6 +34,25 @@ public static class EmployeeDtoFactory
         };
 
 
+        return result;
+    }
+
+    public static Employee Update(EmployeeUpdateRequest request, ICollection<EmployeeSkill> employeeSkills)
+    {
+        var result = new Employee
+        {
+            Id = request.Id,
+            EmployeeNameId = request.EmployeeNameId,
+            Salary = request.Salary,
+            Experience = request.Experience,
+            Level = request.Level,
+            CFrontEnd = request.CFrontEnd,
+            CBackEnd = request.CBackEnd,
+            CDevops = request.CDevops,
+            CDatabase = request.CDatabase,
+            IsAvalaible = request.IsAvalaible,
+            EmployeeSkills = employeeSkills,
+        };
 
         return result;
     }

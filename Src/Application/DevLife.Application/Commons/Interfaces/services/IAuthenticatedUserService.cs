@@ -2,7 +2,7 @@
 
 public interface IAuthenticatedUserService
 {
-    string UserId { get; }
+    string UserId { get; set; }
     string CompanyId { get; }
     string UserName { get; }
 
