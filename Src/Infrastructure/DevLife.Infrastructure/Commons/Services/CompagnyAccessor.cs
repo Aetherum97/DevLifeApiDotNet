@@ -1,9 +1,9 @@
 using System;
-using DevLife.Application.Commons.Interfaces.Services.Accessors;
+using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevLife.Infrastructure.Modules.Services;
+namespace DevLife.Infrastructure.Commons.Services;
 
 public class UserCompanyAccessor(AppDbContext context) : IUserCompanyAccessor
 {

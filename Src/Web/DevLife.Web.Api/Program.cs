@@ -1,4 +1,5 @@
 using DevLife.Application;
+using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Infrastructure;
 using DevLife.Infrastructure.Identity;
 using DevLife.Infrastructure.Identity.Entity;
@@ -11,16 +12,12 @@ using DevLife.Infrastructure.Modules.Employees.Seeds.Defaults;
 using DevLife.Infrastructure.Modules.Materials.Seeds.Defaults;
 using DevLife.Infrastructure.Persistence.Contexts;
 using DevLife.Shared.Mapper;
+using DevLife.Web.Api;
 using DevLife.Web.Api.Commons.Extenssions;
-using DevLife.Web.Api.Commons.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
 
 bool useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryDatabase");
 
@@ -41,7 +38,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var identityDb = services.GetRequiredService<AppIdentityDbContext>();
     var appDb = services.GetRequiredService<AppDbContext>();
-    
+
     if (!useInMemoryDatabase)
     {
 
@@ -77,6 +74,9 @@ using (var scope = app.Services.CreateScope())
     await DefaultMaterialSkillSeed.SeedAsync(appDb);
     await DefaultMaterialTemplateSeed.SeedAsync(appDb);
     await DefaultMaterialSeed.SeedAsync(appDb);
+
+    var cacheService = scope.ServiceProvider.GetRequiredService<IReferenceDataCacheService>();
+    await cacheService.InitializeAsync();
 }
 
 app.UseDevelopementCors();

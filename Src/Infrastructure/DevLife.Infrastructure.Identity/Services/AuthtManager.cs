@@ -37,7 +37,7 @@ namespace DevLife.Infrastructure.Identity.Services
 
             await tokenRefreshService.DeleteRefreshTokenAsync(user);
 
-            var accessToken = await tokenAccessService.GenerateAccessToken(userClaims);
+            var accessToken = await tokenAccessService.GenerateAccessTokenAsync(userClaims);
             var refreshToken = await tokenRefreshService.GenerateRefreshTokenAsync(user, userClaims);
 
             return new LoginResponse
@@ -65,7 +65,7 @@ namespace DevLife.Infrastructure.Identity.Services
             }
 
             var userClaims = await appUserService.GenarateClaimsAsync(refreshToken.User);
-            var newAccessToken = await tokenAccessService.GenerateAccessToken(userClaims);
+            var newAccessToken = await tokenAccessService.GenerateAccessTokenAsync(userClaims);
 
             return new AuthenticateResponse
             {

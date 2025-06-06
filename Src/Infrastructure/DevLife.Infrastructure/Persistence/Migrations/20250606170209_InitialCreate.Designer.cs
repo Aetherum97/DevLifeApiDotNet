@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevLife.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250604095727_InitialCreate")]
+    [Migration("20250606170209_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -35,8 +35,6 @@ namespace DevLife.Infrastructure.Persistence.Migrations
 
                     b.HasKey("ContractId", "CompanyId");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("ContractId")
                         .IsUnique();
 
@@ -55,11 +53,23 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("ContractId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -82,8 +92,6 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EmployeeId", "CompanyId");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("EmployeeId")
                         .IsUnique();
@@ -243,10 +251,10 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsAccepted")
+                    b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsCompleted")
+                    b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -258,7 +266,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Progress")
+                    b.Property<int>("Progress")
                         .HasColumnType("int");
 
                     b.Property<int>("Reward")
@@ -706,12 +714,14 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.HasOne("DevLife.Domain.Commons.Entity.CompanyContract", "CompanyContract")
                         .WithMany("AssignedEmployees")
                         .HasForeignKey("CompanyId", "ContractId")
+                        .HasPrincipalKey("CompanyId", "ContractId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DevLife.Domain.Commons.Entity.CompanyEmployee", "CompanyEmployee")
                         .WithMany("ContractAssignments")
                         .HasForeignKey("CompanyId", "EmployeeId")
+                        .HasPrincipalKey("CompanyId", "EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

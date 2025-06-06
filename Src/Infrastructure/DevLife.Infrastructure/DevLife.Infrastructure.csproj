@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Commons\Repositories\" />
+    <Folder Include="Persistence/Migrations/" />
   </ItemGroup>
 
 </Project>

@@ -6,5 +6,4 @@ namespace DevLife.Application.Modules.Employees.Interfaces.Repositories;
 
 public interface IEmployeeRepository : IBaseRepository<Employee>
 {
-    
 }

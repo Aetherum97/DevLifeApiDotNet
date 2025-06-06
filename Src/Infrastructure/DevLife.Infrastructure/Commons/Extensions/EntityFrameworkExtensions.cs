@@ -11,7 +11,6 @@ public static class EntityFrameworkExtensions
     public static void ApplyAuditing(this ChangeTracker changeTracker, IAuthenticatedUserService authenticatedUser)
     {
         var userId = authenticatedUser.GetUserId();
-
         var currentTime = DateTime.UtcNow;
 
         foreach (var entry in changeTracker.Entries())

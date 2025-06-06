@@ -1,4 +1,5 @@
 ﻿using DevLife.Application.Modules.Contracts.DTOs;
+using DevLife.Application.Modules.Contracts.DTOs.Requests;
 using DevLife.Domain.Modules.Contracts;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace DevLife.Application.Modules.Contracts.Interfaces.Services
     public interface IContractService
     {
         Task<List<ContractDto>> GetAllAsync();
-
+        Task<ContractDto> GetByIdAsync(Guid id);
+        Task<ContractDto> CreateAsync(ContractCreateRequest request);
+        Task<ContractDto> UpdateAsync(ContractUpdateRequest request);
+        Task<ContractDto> DeleteAsync(ContractDeleteRequest request);
     }
 }

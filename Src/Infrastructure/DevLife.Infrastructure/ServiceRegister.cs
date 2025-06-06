@@ -1,7 +1,9 @@
 using DevLife.Application.Commons.Interfaces.Repositories;
-using DevLife.Application.Commons.Interfaces.Services.Accessors;
+using DevLife.Application.Commons.Interfaces.Services;
+using DevLife.Domain.Modules.Employees;
 using DevLife.Infrastructure.Commons.Bases;
-using DevLife.Infrastructure.Modules.Services;
+using DevLife.Infrastructure.Commons.Interfaces;
+using DevLife.Infrastructure.Commons.Services;
 using DevLife.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +28,9 @@ public static class ServiceRegister
         }
 
         services.RegisterRepositories();
+        services.RegisterReferenceDataCacheService();
         services.AddScoped<IUserCompanyAccessor, UserCompanyAccessor>();
+        
 
         return services;
     }
@@ -45,6 +49,12 @@ public static class ServiceRegister
             if (implementation is not null)
                 services.AddTransient(item, implementation);
         }
+    }
+    private static void RegisterReferenceDataCacheService(this IServiceCollection services)
+    {
+        services.AddSingleton<IReferenceDataCacheService, ReferenceDataCacheService>();
+        services.AddScoped<IReferenceInclude<EmployeeSkill>, EmployeeSkillInclude>();
+        services.AddScoped<IReferenceInclude<EmployeeSkillModificator>, EmployeeSkillModificatorInclude>();
     }
 
 }

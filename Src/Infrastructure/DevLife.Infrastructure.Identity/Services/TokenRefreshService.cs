@@ -1,4 +1,4 @@
-﻿using DevLife.Application.Commons.Interfaces.Services.Accessors;
+﻿using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Application.Modules.Auth.DTOs;
 using DevLife.Infrastructure.Identity.Entity;
 using DevLife.Infrastructure.Identity.Interfaces.Repositories;
