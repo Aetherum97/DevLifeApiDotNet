@@ -10,6 +10,7 @@ namespace DevLife.Application.Modules.Companies.Interfaces.Services
     public interface ICompanyService
     {
         Task<List<CompanyDto>> GetAllAsync();
+        Task<CompanyDto?> GetByIdAsync(Guid id);
 
     }
 }

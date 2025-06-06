@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevLife.Web.Api.Modules.Employee;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class EmployeeController(IEmployeeService employeeService) : ControllerBase
 {
-    [Authorize]
     [HttpGet]
     public async Task<ActionResult<List<EmployeeDto>>> GetAll()
     {
@@ -21,7 +21,6 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
         return Ok(response);
     }
 
-    [Authorize]
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<List<EmployeeDto>>> GetById(Guid id)
     {
@@ -29,7 +28,6 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
         return Ok(response);
     }
 
-    [Authorize]
     [HttpPost]
     public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateRequest request)
     {
@@ -39,7 +37,6 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
 
     }
 
-    [Authorize]
     [HttpPut]
     public async Task<ActionResult<EmployeeDto>> Update(EmployeeUpdateRequest request)
     {
@@ -49,7 +46,6 @@ public class EmployeeController(IEmployeeService employeeService) : ControllerBa
 
     }
 
-    [Authorize]
     [HttpDelete("{employeId:guid}")]
     public async Task<ActionResult<EmployeeDto>> Delete(Guid employeId, EmployeeDeleteRequest request)
     {
