@@ -291,6 +291,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyEmployee", x => new { x.EmployeeId, x.CompanyId });
+                    table.UniqueConstraint("AK_CompanyEmployee_CompanyId_EmployeeId", x => new { x.CompanyId, x.EmployeeId });
                     table.ForeignKey(
                         name: "FK_CompanyEmployee_Company_CompanyId",
                         column: x => x.CompanyId,
@@ -334,7 +335,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MaterialTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MaterialTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -386,6 +387,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyMaterial", x => new { x.MaterialId, x.CompanyId });
+                    table.UniqueConstraint("AK_CompanyMaterial_CompanyId_MaterialId", x => new { x.CompanyId, x.MaterialId });
                     table.ForeignKey(
                         name: "FK_CompanyMaterial_Company_CompanyId",
                         column: x => x.CompanyId,
@@ -444,13 +446,13 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                         name: "FK_CompanyMaterialEmployee_CompanyEmployee_CompanyId_EmployeeId",
                         columns: x => new { x.CompanyId, x.EmployeeId },
                         principalTable: "CompanyEmployee",
-                        principalColumns: new[] { "EmployeeId", "CompanyId" },
+                        principalColumns: new[] { "CompanyId", "EmployeeId" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CompanyMaterialEmployee_CompanyMaterial_CompanyId_MaterialId",
                         columns: x => new { x.CompanyId, x.MaterialId },
                         principalTable: "CompanyMaterial",
-                        principalColumns: new[] { "MaterialId", "CompanyId" },
+                        principalColumns: new[] { "CompanyId", "MaterialId" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -487,20 +489,10 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyEmployee_CompanyId",
-                table: "CompanyEmployee",
-                column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CompanyEmployee_EmployeeId",
                 table: "CompanyEmployee",
                 column: "EmployeeId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CompanyMaterial_CompanyId",
-                table: "CompanyMaterial",
-                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyMaterial_MaterialId",
