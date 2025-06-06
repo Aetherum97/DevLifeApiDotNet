@@ -6,5 +6,5 @@ namespace DevLife.Application.Modules.Companies.Interfaces.Repositories;
 
 public interface IPlayerRepository : IBaseRepository<Player>
 {
-
+    Task<bool> IsExistsByUserIdAsync(Guid userId);
 }

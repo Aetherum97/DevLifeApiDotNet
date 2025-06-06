@@ -7,10 +7,11 @@ using FluentValidation;
 namespace DevLife.Application.Modules.Auth.Services;
 
 public class AuthentificationService(
-    IAuthManager authManager
-
+    IAuthManager authManager,
+    IEmailConfirmationHandler emailConfirmationHandler
 ) : IAuthentificationService
 {
+
     public async Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest request)
     {
         return await authManager.AuthenticateAsync(request.RefreshToken);
@@ -18,7 +19,13 @@ public class AuthentificationService(
 
     public async Task<ConfirmEmailResponse> ConfirmEmailAsync(ConfirmEmailRequest request)
     {
-        return await authManager.ValidateEmailAsync(request);
+        var response = await authManager.ValidateEmailAsync(request);
+
+        if (response.Success && !string.IsNullOrEmpty(response.UserName))
+        {
+            await emailConfirmationHandler.HandleAsync(response.UserId, response.UserName);
+        }
+        return response;
     }
 
     public async Task<LoginResponse> LoginAsync(LoginRequest request)

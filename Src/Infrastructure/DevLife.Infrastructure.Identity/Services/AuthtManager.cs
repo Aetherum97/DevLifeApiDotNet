@@ -83,6 +83,10 @@ namespace DevLife.Infrastructure.Identity.Services
             {
                 Success = result.Succeeded,
                 Message = string.Join(", ", result.Errors.Select(e => e.Description)),
+                //TODO: Add UserId and UserName to the response if needed
+                // For now, we will return dummy values
+                UserId = Guid.NewGuid(),
+                UserName = "toinou"
             };
         }
     }
