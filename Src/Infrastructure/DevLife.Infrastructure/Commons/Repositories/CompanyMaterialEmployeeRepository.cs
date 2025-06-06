@@ -15,11 +15,7 @@ namespace DevLife.Infrastructure.Commons.Repositories
     {
         public async Task<bool> ToggleAssignmentAsync(Guid companyId, Guid materialId, Guid employeeId)
         {
-            var existing = await context.CompanyMaterialEmployee
-                .FirstOrDefaultAsync(cme =>
-                    cme.CompanyId == companyId &&
-                    cme.MaterialId == materialId &&
-                    cme.EmployeeId == employeeId);
+            var existing = await GetByCompanyMaterialEmployeeAsync(companyId, materialId, employeeId);
 
             if (existing != null)
             {
@@ -45,7 +41,7 @@ namespace DevLife.Infrastructure.Commons.Repositories
             }
         }
 
-        public async Task<CompanyMaterialEmployee?> GetByCompanyMaterialEmployeeAsync(
+        private async Task<CompanyMaterialEmployee?> GetByCompanyMaterialEmployeeAsync(
         Guid companyId, Guid materialId, Guid employeeId)
         {
             return await context.CompanyMaterialEmployee

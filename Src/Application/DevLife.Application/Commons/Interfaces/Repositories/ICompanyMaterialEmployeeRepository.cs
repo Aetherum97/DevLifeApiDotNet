@@ -10,7 +10,5 @@ namespace DevLife.Application.Commons.Interfaces.Repositories
     public interface ICompanyMaterialEmployeeRepository : IBaseRepository<CompanyMaterialEmployee>
     {
         Task<bool> ToggleAssignmentAsync(Guid companyId, Guid materialId, Guid employeeId);
-
-        Task<CompanyMaterialEmployee?> GetByCompanyMaterialEmployeeAsync(Guid companyId, Guid materialId, Guid employeeId);
     }
 }
