@@ -18,6 +18,11 @@ public class CompanyContractEmployeeRepository(AppDbContext context) : BaseRepos
             .FirstOrDefaultAsync(cce => cce.ContractId == contractId && cce.EmployeeId == employeeId);
     }
 
+    public async Task<List<CompanyContractEmployee>> GetAllContractAssignementAsync(Guid companyId)
+    {
+        return await context.Set<CompanyContractEmployee>().Where(cce => cce.CompanyId == companyId).AsNoTracking().ToListAsync();
+    }
+
     public override async Task<CompanyContractEmployee> CreateAsync(CompanyContractEmployee entity)
     {
         var contract = await context.Set<Contract>()
@@ -55,4 +60,40 @@ public class CompanyContractEmployeeRepository(AppDbContext context) : BaseRepos
         await context.SaveChangesAsync();
         return assignment;
     }
+
+    public override async Task<CompanyContractEmployee> UpdateAsync(CompanyContractEmployee entity)
+    {
+        var contract = await context.Set<Contract>()
+            .Include(c => c.CompanyContract)
+            .FirstOrDefaultAsync(c => c.Id == entity.ContractId) ?? throw new InvalidOperationException($"ContractCompany with ID {entity.ContractId} not found");
+
+        var employee = await context.Set<Employee>()
+            .Include(e => e.CompanyEmployee)
+            .FirstOrDefaultAsync(c => c.Id == entity.EmployeeId) ?? throw new InvalidOperationException($"ContractCompany with ID {entity.EmployeeId} not found");
+
+        if (employee.CompanyEmployee == null)
+        {
+            throw new InvalidOperationException($"employee does not belopng to a company");
+        }
+
+        if (contract.CompanyContract == null)
+        {
+            throw new InvalidOperationException($"contract does not belopng to a company");
+        }
+
+        if (employee.CompanyEmployee.CompanyId != contract.CompanyContract.CompanyId)
+        {
+
+            throw new InvalidOperationException($"Company does not match");
+        }
+
+        entity.ContractId = contract.Id;
+        entity.EmployeeId = employee.Id;
+
+        context.Set<CompanyContractEmployee>().Update(entity);
+        await context.SaveChangesAsync();
+        return entity;
+    }
+
+    
 }

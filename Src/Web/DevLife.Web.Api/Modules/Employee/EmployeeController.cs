@@ -1,6 +1,3 @@
-using DevLife.Application.Commons.DTOs.Requests;
-using DevLife.Application.Commons.DTOs.Responses;
-using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
@@ -12,7 +9,7 @@ namespace DevLife.Web.Api.Modules.Employee;
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
-public class EmployeeController(IEmployeeService employeeService, IContractAssignmentService contractAssignmentService) : ControllerBase
+public class EmployeeController(IEmployeeService employeeService) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<List<EmployeeDto>>> GetAll()
@@ -33,15 +30,6 @@ public class EmployeeController(IEmployeeService employeeService, IContractAssig
     {
 
         var result = await employeeService.CreateAsync(request);
-        return Ok(result);
-
-    }
-
-    [HttpPost("contract-assignment")]
-    public async Task<ActionResult<ContractAssignmentResponse>> EmployeeContractAssignment(ContractAssignmentRequest request)
-    {
-
-        var result = await contractAssignmentService.ContractAsignment(request);
         return Ok(result);
 
     }

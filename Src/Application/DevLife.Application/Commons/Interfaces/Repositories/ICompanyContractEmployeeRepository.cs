@@ -6,5 +6,5 @@ namespace DevLife.Application.Commons.Interfaces.Repositories;
 public interface ICompanyContractEmployeeRepository : IBaseRepository<CompanyContractEmployee>
 {
     Task<CompanyContractEmployee?> GetByContractAndEmployeeAsync(Guid contractId, Guid employeeId);
-    
+    Task<List<CompanyContractEmployee>> GetAllContractAssignementAsync(Guid companyId);
 }
