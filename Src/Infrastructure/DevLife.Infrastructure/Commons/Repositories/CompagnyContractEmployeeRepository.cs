@@ -18,7 +18,7 @@ public class CompanyContractEmployeeRepository(AppDbContext context) : BaseRepos
             .FirstOrDefaultAsync(cce => cce.ContractId == contractId && cce.EmployeeId == employeeId);
     }
 
-    public override async Task<CompanyContractEmployee> AddAsync(CompanyContractEmployee entity)
+    public override async Task<CompanyContractEmployee> CreateAsync(CompanyContractEmployee entity)
     {
         var contract = await context.Set<Contract>()
             .Include(c => c.CompanyContract)
@@ -28,6 +28,15 @@ public class CompanyContractEmployeeRepository(AppDbContext context) : BaseRepos
             .Include(e => e.CompanyEmployee)
             .FirstOrDefaultAsync(c => c.Id == entity.EmployeeId) ?? throw new InvalidOperationException($"ContractCompany with ID {entity.EmployeeId} not found");
 
+        if (employee.CompanyEmployee == null)
+        {
+            throw new InvalidOperationException($"employee does not belopng to a company");
+        }
+
+        if (contract.CompanyContract == null)
+        {
+            throw new InvalidOperationException($"contract does not belopng to a company");
+        }
 
         if (employee.CompanyEmployee.CompanyId != contract.CompanyContract.CompanyId)
         {

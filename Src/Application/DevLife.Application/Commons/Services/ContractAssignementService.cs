@@ -14,10 +14,6 @@ public class ContractAssignementService(
 {
     public async Task<ContractAssignmentResponse> ContractAsignment(ContractAssignmentRequest request)
     {
-
-
-
-
         var contractAsignment = new CompanyContractEmployee
         {
             CompanyId = request.ContractId,
@@ -25,11 +21,10 @@ public class ContractAssignementService(
             ContractId = request.ContractId,
         };
 
-        var result = await companyContractEmployeeRepository.AddAsync(contractAsignment);
+        var result = await companyContractEmployeeRepository.CreateAsync(contractAsignment);
 
         if (result != null)
         {
-
             return new ContractAssignmentResponse
             {
                 Success = true

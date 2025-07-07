@@ -38,7 +38,7 @@ public class EmployeeService(
 
         var employeeSkills = await employeeSkillRepository.GetByIdsAsync(request.EmployeeSkills);
         var entity = EmployeeFactory.Create(request, employeeSkills, CompanyId);
-        var result = await employeeRepository.AddAsync(entity);
+        var result = await employeeRepository.CreateAsync(entity);
 
         var response = new EmployeeDto(result);
         return response;

@@ -37,7 +37,7 @@ public class ContractService(
             throw new KeyNotFoundException($"ContractTemplate with ID {request.ContractTemplateId} was not found.");
 
         var entity = ContractFactory.Create(request, contractTemplate, companyId);
-        var result = await contractRepository.AddAsync(entity);
+        var result = await contractRepository.CreateAsync(entity);
 
         var response = new ContractDto(result);
         return response;
