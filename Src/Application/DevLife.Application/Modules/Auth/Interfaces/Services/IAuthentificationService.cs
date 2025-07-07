@@ -10,4 +10,5 @@ public interface IAuthentificationService
     Task<ConfirmEmailResponse> ConfirmEmailAsync(ConfirmEmailRequest request);
     Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest request);
     Task<RegisterResponse> RegisterAsync(RegisterRequest request);
+
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevLife.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250604095727_InitialCreate")]
+    [Migration("20250606151733_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -83,8 +83,6 @@ namespace DevLife.Infrastructure.Persistence.Migrations
 
                     b.HasKey("EmployeeId", "CompanyId");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("EmployeeId")
                         .IsUnique();
 
@@ -100,8 +98,6 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MaterialId", "CompanyId");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("MaterialId")
                         .IsUnique();
@@ -555,7 +551,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MaterialTemplateId")
+                    b.Property<Guid?>("MaterialTemplateId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedAt")
@@ -763,12 +759,14 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.HasOne("DevLife.Domain.Commons.Entity.CompanyEmployee", "CompanyEmployee")
                         .WithMany("MaterialAssignments")
                         .HasForeignKey("CompanyId", "EmployeeId")
+                        .HasPrincipalKey("CompanyId", "EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DevLife.Domain.Commons.Entity.CompanyMaterial", "CompanyMaterial")
                         .WithMany("AssignedMaterial")
                         .HasForeignKey("CompanyId", "MaterialId")
+                        .HasPrincipalKey("CompanyId", "MaterialId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -826,8 +824,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     b.HasOne("DevLife.Domain.Modules.Materials.MaterialTemplate", "MaterialTemplate")
                         .WithMany("Material")
                         .HasForeignKey("MaterialTemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("MaterialTemplate");
                 });
