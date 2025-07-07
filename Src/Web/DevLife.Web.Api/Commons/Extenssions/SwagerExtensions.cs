@@ -1,4 +1,8 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace DevLife.Web.Api.Commons.Extenssions;
 
@@ -43,6 +47,37 @@ public static class SwagerExtensions
         });
 
         return services;
+    }
+
+    public class DefaultValuesSchemaFilter : ISchemaFilter
+    {
+        public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+        {
+            if (schema.Properties == null)
+                return;
+
+            foreach (var prop in context.Type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                var attr = prop.GetCustomAttribute<DefaultValueAttribute>();
+                if (attr == null)
+                    continue;
+
+                var name = char.ToLowerInvariant(prop.Name[0]) + prop.Name.Substring(1);
+                if (!schema.Properties.ContainsKey(name))
+                    continue;
+
+                var defaultValue = attr.Value;
+                switch (defaultValue)
+                {
+                    case string s:
+                        schema.Properties[name].Default = new OpenApiString(s);
+                        break;
+                    case int i:
+                        schema.Properties[name].Default = new OpenApiInteger(i);
+                        break;
+                }
+            }
+        }
     }
 
 }
