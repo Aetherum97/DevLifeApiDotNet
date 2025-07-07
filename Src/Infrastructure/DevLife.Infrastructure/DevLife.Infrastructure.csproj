@@ -19,7 +19,7 @@
     <Compile Include="Modules/Companies/Repositories/PlayerRepository.cs" />
     <Compile Include="Modules/Companies/Seeds/DefaultCompanySeed.cs" />
     <Compile Include="Modules/Companies/Seeds/DefaultPlayerSeed.cs" />
-    <Compile Include="Modules\Companies\Handlers\EmailConfirmationHandler.cs" />
+    <Compile Include="Modules/Companies/Handlers/EmailConfirmationHandler.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +31,11 @@
   <ItemGroup>
     <ProjectReference Include="../../Application/DevLife.Application/DevLife.Application.csproj" />
     <ProjectReference Include="../../Shared/DevLife.Shared/DevLife.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons/Repositories/" />
+    <Folder Include="Persistence/Migrations/" />
   </ItemGroup>
 
 </Project>

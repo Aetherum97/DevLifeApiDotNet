@@ -1,8 +1,9 @@
 using System;
 using DevLife.Application.Commons.Interfaces.Services;
+using DevLife.Web.Api.Commons.Services;
 
 
-namespace DevLife.Web.Api.Commons.Services;
+namespace DevLife.Web.Api;
 
 public static class ServiceRegistration
 {

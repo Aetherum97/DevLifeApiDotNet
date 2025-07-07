@@ -17,7 +17,7 @@ public abstract class BaseRepository<T>(DbContext dbContext) : IBaseRepository<T
         return await dbContext.Set<T>().FindAsync(id) ?? throw new InvalidOperationException("Ressources not Found");
     }
 
-    public virtual async Task<T> AddAsync(T entity)
+    public virtual async Task<T> CreateAsync(T entity)
     {
         await dbContext.Set<T>().AddAsync(entity);
         await dbContext.SaveChangesAsync();

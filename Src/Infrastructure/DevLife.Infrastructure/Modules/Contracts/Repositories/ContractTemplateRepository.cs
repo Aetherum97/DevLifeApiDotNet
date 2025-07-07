@@ -8,9 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevLife.Infrastructure.Modules.Contracts.Repositories
+namespace DevLife.Infrastructure.Modules.Contracts.Repositories;
+
+public sealed class ContractTemplateRepository(AppDbContext context) : BaseRepository<ContractTemplate>(context), IContractTemplateRepository
 {
-    public sealed class ContractTemplateRepository(AppDbContext context) : BaseRepository<ContractTemplate>(context), IContractTemplateRepository
-    {
-    }
+
 }
+

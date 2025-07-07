@@ -1,10 +1,5 @@
-using System;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using DevLife.Application.Commons.Interfaces.Services;
-using DevLife.Application.Commons.Interfaces.Services.Accessors;
-using DevLife.Infrastructure.Identity.Entity;
-using Microsoft.AspNetCore.Identity;
 
 namespace DevLife.Web.Api.Commons.Services;
 

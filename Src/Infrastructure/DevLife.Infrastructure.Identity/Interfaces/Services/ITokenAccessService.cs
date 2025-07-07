@@ -5,7 +5,7 @@ namespace DevLife.Infrastructure.Identity.Interfaces.Services
 {
     public interface ITokenAccessService
     {
-        Task<string> GenerateAccessToken(IEnumerable<Claim> userClaim);
+        Task<string> GenerateAccessTokenAsync(IEnumerable<Claim> userClaim);
 
     }
 }

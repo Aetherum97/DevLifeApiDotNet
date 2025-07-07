@@ -1,10 +1,7 @@
 using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
-
-using DevLife.Application.Modules.Employees.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevLife.Web.Api.Modules.Employee;

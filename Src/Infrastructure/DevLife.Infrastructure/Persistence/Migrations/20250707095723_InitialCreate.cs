@@ -260,9 +260,9 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     ContractTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsAccepted = table.Column<bool>(type: "bit", nullable: true),
-                    IsCompleted = table.Column<bool>(type: "bit", nullable: true),
-                    Progress = table.Column<int>(type: "int", nullable: true),
+                    IsAccepted = table.Column<bool>(type: "bit", nullable: false),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: false),
+                    Progress = table.Column<int>(type: "int", nullable: false),
                     Reward = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -363,6 +363,7 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyContract", x => new { x.ContractId, x.CompanyId });
+                    table.UniqueConstraint("AK_CompanyContract_CompanyId_ContractId", x => new { x.CompanyId, x.ContractId });
                     table.ForeignKey(
                         name: "FK_CompanyContract_Company_CompanyId",
                         column: x => x.CompanyId,
@@ -410,7 +411,11 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ContractId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -419,13 +424,13 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                         name: "FK_CompanyContractEmployee_CompanyContract_CompanyId_ContractId",
                         columns: x => new { x.CompanyId, x.ContractId },
                         principalTable: "CompanyContract",
-                        principalColumns: new[] { "ContractId", "CompanyId" },
+                        principalColumns: new[] { "CompanyId", "ContractId" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CompanyContractEmployee_CompanyEmployee_CompanyId_EmployeeId",
                         columns: x => new { x.CompanyId, x.EmployeeId },
                         principalTable: "CompanyEmployee",
-                        principalColumns: new[] { "EmployeeId", "CompanyId" },
+                        principalColumns: new[] { "CompanyId", "EmployeeId" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -460,11 +465,6 @@ namespace DevLife.Infrastructure.Persistence.Migrations
                 name: "IX_Company_Id",
                 table: "Company",
                 column: "Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CompanyContract_CompanyId",
-                table: "CompanyContract",
-                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyContract_ContractId",

@@ -5,7 +5,7 @@ using DevLife.Domain.Modules.Employees;
 
 namespace DevLife.Application.Modules.Employees.Factories;
 
-public static class EmployeeDtoFactory
+public static class EmployeeFactory
 {
 
     public static Employee Create(EmployeeCreateRequest request, ICollection<EmployeeSkill> employeeSkills, Guid companyId)

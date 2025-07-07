@@ -1,15 +1,14 @@
-﻿using DevLife.Application.Commons.Interfaces.Services.Accessors;
+﻿using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Infrastructure.Identity.Interfaces.Services;
 using DevLife.Infrastructure.Identity.Settings;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace DevLife.Infrastructure.Identity.Services
 {
     class TokenAccessService(JwtSettings jwtSettings, IUserCompanyAccessor companyAccessor) : JwtService(jwtSettings), ITokenAccessService
     {
-        public async Task<string> GenerateAccessToken(IEnumerable<Claim> userClaim)
+        public async Task<string> GenerateAccessTokenAsync(IEnumerable<Claim> userClaim)
         {
             var signingCredentials = GetSigningCredentials();
             var userId = userClaim.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;

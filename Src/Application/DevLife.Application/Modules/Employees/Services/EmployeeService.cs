@@ -1,11 +1,12 @@
 ﻿using DevLife.Application.Commons.Interfaces.Services;
-using DevLife.Application.Commons.Interfaces.Services.Accessors;
 using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Application.Modules.Employees.Factories;
 using DevLife.Application.Modules.Employees.Interfaces.Repositories;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
-using DevLife.Domain.Modules.Employees;
+
+
+
 
 namespace DevLife.Application.Modules.Employees.Services;
 
@@ -35,9 +36,9 @@ public class EmployeeService(
     {
         var CompanyId = authenticatedUser.GetCompanyId();
 
-        var employeeSkills = await employeeSkillRepository.GetEmployeeSkillsAsync(request.EmployeeSkills);
-        var entity = EmployeeDtoFactory.Create(request, employeeSkills, CompanyId);
-        var result = await employeeRepository.AddAsync(entity);
+        var employeeSkills = await employeeSkillRepository.GetByIdsAsync(request.EmployeeSkills);
+        var entity = EmployeeFactory.Create(request, employeeSkills, CompanyId);
+        var result = await employeeRepository.CreateAsync(entity);
 
         var response = new EmployeeDto(result);
         return response;
@@ -45,13 +46,14 @@ public class EmployeeService(
 
     public async Task<EmployeeDto> UpdateAsync(EmployeeUpdateRequest request)
     {
-        var employeeSkills = await employeeSkillRepository.GetEmployeeSkillsAsync(request.EmployeeSkills);
-        var entity = EmployeeDtoFactory.Update(request, employeeSkills);
+        var employeeSkills = await employeeSkillRepository.GetByIdsAsync(request.EmployeeSkills);
+        var entity = EmployeeFactory.Update(request, employeeSkills);
         var result = await employeeRepository.UpdateAsync(entity);
 
         var response = new EmployeeDto(result);
         return response;
     }
+
 
     public async Task<EmployeeDto> DeleteAsync(EmployeeDeleteRequest request)
     {
@@ -64,5 +66,8 @@ public class EmployeeService(
         var response = new EmployeeDto(result);
         return response;
     }
+
+
+
 }
 

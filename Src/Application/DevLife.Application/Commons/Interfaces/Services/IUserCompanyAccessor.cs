@@ -1,6 +1,6 @@
 using System;
 
-namespace DevLife.Application.Commons.Interfaces.Services.Accessors;
+namespace DevLife.Application.Commons.Interfaces.Services;
 
 public interface IUserCompanyAccessor
 {

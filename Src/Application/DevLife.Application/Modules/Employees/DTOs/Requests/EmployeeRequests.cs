@@ -38,3 +38,4 @@ public class EmployeeDeleteRequest()
     public required Guid Id { get; set; }
     public required Guid CompanyId { get; set; }
 }
+

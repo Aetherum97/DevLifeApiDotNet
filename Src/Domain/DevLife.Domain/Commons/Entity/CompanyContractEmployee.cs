@@ -4,7 +4,7 @@ using DevLife.Domain.Commons.Bases;
 
 namespace DevLife.Domain.Commons.Entity;
 
-public class CompanyContractEmployee : BaseEntity
+public class CompanyContractEmployee : AuditableBaseEntity
 {
     public Guid CompanyId { get; set; }
     public Guid EmployeeId { get; set; }

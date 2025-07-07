@@ -1,5 +1,6 @@
 using System;
 using DevLife.Domain.Commons.Bases;
+using Microsoft.VisualBasic;
 
 namespace DevLife.Domain.Commons.Entity;
 
@@ -11,5 +12,4 @@ public class CompanyMaterialEmployee : AuditableBaseEntity
 
     public CompanyMaterial? CompanyMaterial { get; set; }
     public CompanyEmployee? CompanyEmployee { get; set; }
-   
 }

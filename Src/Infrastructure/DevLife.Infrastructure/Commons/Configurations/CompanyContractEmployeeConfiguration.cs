@@ -16,12 +16,13 @@ public class CompanyContractEmployeeConfiguration : IEntityTypeConfiguration<Com
         builder.HasOne(cce => cce.CompanyEmployee)
             .WithMany(e => e.ContractAssignments)
             .HasForeignKey(cce => new { cce.CompanyId, cce.EmployeeId })
+            .HasPrincipalKey(ce => new { ce.CompanyId, ce.EmployeeId })
             .OnDelete(DeleteBehavior.Restrict);
 
-
         builder.HasOne(cce => cce.CompanyContract)
-            .WithMany(c => c.AssignedEmployees)
+            .WithMany(cc => cc.AssignedEmployees)
             .HasForeignKey(cce => new { cce.CompanyId, cce.ContractId })
+            .HasPrincipalKey(cc => new { cc.CompanyId, cc.ContractId })
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

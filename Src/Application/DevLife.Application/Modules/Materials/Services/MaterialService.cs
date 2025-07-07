@@ -1,8 +1,6 @@
 ﻿using DevLife.Application.Commons.Interfaces.Repositories;
 using DevLife.Application.Commons.Interfaces.Services;
-using DevLife.Application.Commons.Interfaces.Services.Accessors;
 using DevLife.Application.Modules.Companies.Interfaces.Repositories;
-using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.Interfaces.Repositories;
 using DevLife.Application.Modules.Materials.DTOs;
 using DevLife.Application.Modules.Materials.DTOs.Requests;
@@ -10,13 +8,6 @@ using DevLife.Application.Modules.Materials.DTOs.Responses;
 using DevLife.Application.Modules.Materials.Factories;
 using DevLife.Application.Modules.Materials.Interfaces.Repositories;
 using DevLife.Application.Modules.Materials.Interfaces.Services;
-using DevLife.Domain.Commons.Entity;
-using DevLife.Domain.Modules.Materials;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevLife.Application.Modules.Materials.Services
 {
@@ -33,7 +24,7 @@ namespace DevLife.Application.Modules.Materials.Services
 
             var entity = MaterialDtoFactory.Create(request, companyId);
 
-            var result = await materialRepository.AddAsync(entity);
+            var result = await materialRepository.CreateAsync(entity);
             var response = new MaterialDto(result);
 
             return response;
