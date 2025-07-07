@@ -27,7 +27,7 @@ namespace DevLife.Infrastructure.Modules.Companies.Handlers
                 Experience = 0
             };
 
-            await companyRepository.AddAsync(newCompany);
+            await companyRepository.CreateAsync(newCompany);
 
             var newPlayer = new Player
             {
@@ -36,7 +36,7 @@ namespace DevLife.Infrastructure.Modules.Companies.Handlers
                 UserId = userId,
                 CompanyId = newCompany.Id
             };
-            await playerRepository.AddAsync(newPlayer);
+            await playerRepository.CreateAsync(newPlayer);
         }
     }
 }
