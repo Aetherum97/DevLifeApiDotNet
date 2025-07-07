@@ -79,14 +79,14 @@ namespace DevLife.Infrastructure.Identity.Services
 
             var result = await appUserService.ValidateEmailAsync(request.Email, request.Token);
 
+            var user = await appUserService.GetByEmailAsync(request.Email);
+
             return new ConfirmEmailResponse
             {
                 Success = result.Succeeded,
                 Message = string.Join(", ", result.Errors.Select(e => e.Description)),
-                //TODO: Add UserId and UserName to the response if needed
-                // For now, we will return dummy values
-                UserId = Guid.NewGuid(),
-                UserName = "toinou"
+                UserId = user.Id,
+                UserName = user.UserName,
             };
         }
     }
