@@ -14,7 +14,7 @@ namespace DevLife.Application.Modules.Companies.DTOs
         public CompanyDto(Company company)
         {
             Id = company.Id;
-            PlayerId = company.Player!.Id;
+            PlayerId = company.Player?.Id ?? Guid.Empty;
             Name = company.Name;
             Experience = company.Experience;
         }

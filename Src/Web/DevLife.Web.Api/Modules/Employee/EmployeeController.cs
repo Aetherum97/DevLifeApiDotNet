@@ -4,19 +4,16 @@ using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
-
-using DevLife.Application.Modules.Employees.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevLife.Web.Api.Modules.Employee;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class EmployeeController(IEmployeeService employeeService, IContractAssignmentService contractAssignmentService) : ControllerBase
 {
-    [Authorize]
     [HttpGet]
     public async Task<ActionResult<List<EmployeeDto>>> GetAll()
     {
@@ -24,7 +21,6 @@ public class EmployeeController(IEmployeeService employeeService, IContractAssig
         return Ok(response);
     }
 
-    [Authorize]
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<List<EmployeeDto>>> GetById(Guid id)
     {
@@ -32,7 +28,6 @@ public class EmployeeController(IEmployeeService employeeService, IContractAssig
         return Ok(response);
     }
 
-    [Authorize]
     [HttpPost]
     public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateRequest request)
     {
@@ -42,7 +37,6 @@ public class EmployeeController(IEmployeeService employeeService, IContractAssig
 
     }
 
-    [Authorize]
     [HttpPost("contract-assignment")]
     public async Task<ActionResult<ContractAssignmentResponse>> EmployeeContractAssignment(ContractAssignmentRequest request)
     {
@@ -52,7 +46,6 @@ public class EmployeeController(IEmployeeService employeeService, IContractAssig
 
     }
 
-    [Authorize]
     [HttpPut]
     public async Task<ActionResult<EmployeeDto>> Update(EmployeeUpdateRequest request)
     {
@@ -62,7 +55,6 @@ public class EmployeeController(IEmployeeService employeeService, IContractAssig
 
     }
 
-    [Authorize]
     [HttpDelete("{employeId:guid}")]
     public async Task<ActionResult<EmployeeDto>> Delete(Guid employeId, EmployeeDeleteRequest request)
     {

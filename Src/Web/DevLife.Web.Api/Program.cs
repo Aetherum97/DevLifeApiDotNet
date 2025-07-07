@@ -1,10 +1,12 @@
 using DevLife.Application;
 using DevLife.Application.Commons.Interfaces.Services;
+using DevLife.Application.Modules.Auth.Interfaces.Services;
 using DevLife.Infrastructure;
 using DevLife.Infrastructure.Identity;
 using DevLife.Infrastructure.Identity.Entity;
 using DevLife.Infrastructure.Identity.Persistence.Contexts;
 using DevLife.Infrastructure.Identity.Persistence.Seeds;
+using DevLife.Infrastructure.Modules.Companies.Handlers;
 using DevLife.Infrastructure.Modules.Companies.Seeds;
 using DevLife.Infrastructure.Modules.Contracts.Seeds.Defaults;
 using DevLife.Infrastructure.Modules.Employees.Seeds.Default;
@@ -24,6 +26,7 @@ bool useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryData
 builder.Services.AddIdentityInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
 builder.Services.AddInfrastructureLayer(builder.Configuration, useInMemoryDatabase);
 builder.Services.AddScoped<ICustomMapper, CustomMapperService>();
+builder.Services.AddScoped<IEmailConfirmationHandler, EmailConfirmationHandler>();
 builder.Services.AddApplicationLayer();
 builder.Services.AddPresentationWebApiLayer();
 builder.Services.AddControllers();

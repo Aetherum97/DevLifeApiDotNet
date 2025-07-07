@@ -19,6 +19,7 @@
     <Compile Include="Modules/Companies/Repositories/PlayerRepository.cs" />
     <Compile Include="Modules/Companies/Seeds/DefaultCompanySeed.cs" />
     <Compile Include="Modules/Companies/Seeds/DefaultPlayerSeed.cs" />
+    <Compile Include="Modules/Companies/Handlers/EmailConfirmationHandler.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commons\Repositories\" />
+    <Folder Include="Commons/Repositories/" />
     <Folder Include="Persistence/Migrations/" />
   </ItemGroup>
 

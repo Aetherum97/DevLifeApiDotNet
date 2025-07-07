@@ -16,12 +16,12 @@ namespace DevLife.Application.Modules.Materials.DTOs
         public MaterialDto(Material material)
         { 
             Id = material.Id;
-            CompanyId = material.CompanyMaterial!.CompanyId;
-            Name = material.MaterialTemplate!.Name;
-            Type = material.MaterialTemplate!.Type;
-            Description = material.MaterialTemplate!.Description;
-            ImageUrl = material.MaterialTemplate!.ImageUrl;
-            MaterialSkill = material.MaterialTemplate!.MaterialSkill is not null
+            CompanyId = material.CompanyMaterial?.CompanyId ?? Guid.Empty;
+            Name = material.MaterialTemplate?.Name ?? null;
+            Type = material.MaterialTemplate?.Type ?? null;
+            Description = material.MaterialTemplate?.Description ?? null;
+            ImageUrl = material.MaterialTemplate?.ImageUrl ?? null;
+            MaterialSkill = material.MaterialTemplate?.MaterialSkill is not null
                 ? new MaterialSkillDto(material.MaterialTemplate!.MaterialSkill)
                 : null;
         }

@@ -17,5 +17,14 @@ namespace DevLife.Application.Modules.Companies.Services
             var response = result.Select(item => new CompanyDto(item)).ToList() ?? [];
             return response;
         }
+
+        public async Task<CompanyDto?> GetByIdAsync(Guid id)
+        {
+            var company = await companyRepository.GetByIdAsync(id);
+            if (company == null)
+                return null;
+
+            return new CompanyDto(company);
+        }
     }
 }
