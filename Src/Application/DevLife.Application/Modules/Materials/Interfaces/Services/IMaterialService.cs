@@ -6,7 +6,7 @@ namespace DevLife.Application.Modules.Materials.Interfaces.Services;
 
 public interface IMaterialService
 {
-    Task<List<MaterialDto>> GetAllAsync();
+    Task<List<MaterialDto>> GetAllByCompanyIdAsync();
     Task<MaterialDto?> GetByIdAsync(Guid id);
     Task<MaterialDto> CreateAsync(MaterialCreateRequest materialDto);
     Task<ToggleMaterialAssignmentDto> ToggleAssignmentAsync(Guid materialId, Guid employeeId);

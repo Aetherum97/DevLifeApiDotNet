@@ -31,9 +31,10 @@ namespace DevLife.Application.Modules.Materials.Services
 
         }
 
-        public async Task<List<MaterialDto>> GetAllAsync()
+        public async Task<List<MaterialDto>> GetAllByCompanyIdAsync()
         {
-            var result = await materialRepository.GetAllAsync();
+            var companyId = authenticatedUserService.GetCompanyId();
+            var result = await materialRepository.GetAllByCompanyIdAsync(companyId);
             var response = (result ?? []).Select(item => new MaterialDto(item)).ToList();
             return response;
         }
