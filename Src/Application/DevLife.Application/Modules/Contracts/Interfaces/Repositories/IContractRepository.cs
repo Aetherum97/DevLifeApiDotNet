@@ -5,5 +5,5 @@ namespace DevLife.Application.Modules.Contracts.Interfaces.Repositories;
 
 public interface IContractRepository : IBaseRepository<Contract>
 {
-
+    Task<List<Contract>> GetAllByCompanyIdAsync(Guid companyId);
 }

@@ -15,7 +15,7 @@ public class ContractController(IContractService contractService) : ControllerBa
     [HttpGet]
     public async Task<ActionResult<List<ContractDto>>> GetAll()
     {
-        var response = await contractService.GetAllAsync();
+        var response = await contractService.GetAllByCompanyIdAsync();
         return Ok(response);
     }
 

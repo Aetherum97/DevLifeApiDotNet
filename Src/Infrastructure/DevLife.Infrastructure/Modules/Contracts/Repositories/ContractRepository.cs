@@ -14,13 +14,14 @@ namespace DevLife.Infrastructure.Modules.Contracts.Repositories;
 public sealed class ContractRepository(AppDbContext context) : BaseRepository<Contract>(context), IContractRepository
 {
 
-    public override async Task<List<Contract>> GetAllAsync()
+    public async Task<List<Contract>> GetAllByCompanyIdAsync(Guid companyId)
     {
         return await context.Set<Contract>()
             .AsNoTracking()
             .Include(c => c.ContractTemplate)
                 .ThenInclude(ct => ct!.ContractTypes)
             .Include(c => c.CompanyContract)
+            .Where(c => c.CompanyContract != null && c.CompanyContract.CompanyId == companyId)
             .ToListAsync();
 
     }
