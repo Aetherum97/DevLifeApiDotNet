@@ -16,9 +16,9 @@ public class EmployeeService(
     IAuthenticatedUserService authenticatedUser
 ) : IEmployeeService
 {
-    public async Task<List<EmployeeDto>> GetAllAsync()
+    public async Task<List<EmployeeDto>> GetAllAsync(Guid companyId)
     {
-        var result = await employeeRepository.GetAllAsync();
+        var result = await employeeRepository.GetAllAsync(companyId);
 
         var response = (result ?? []).Select(item => new EmployeeDto(item)).ToList();
         return response;

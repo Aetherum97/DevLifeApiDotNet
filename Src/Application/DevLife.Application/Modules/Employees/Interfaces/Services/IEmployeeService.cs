@@ -5,7 +5,7 @@ namespace DevLife.Application.Modules.Employees.Interfaces.Services
 {
     public interface IEmployeeService
     {
-        Task<List<EmployeeDto>> GetAllAsync();
+        Task<List<EmployeeDto>> GetAllAsync(Guid companyId);
         Task<EmployeeDto> GetByIdAsync(Guid id);
         Task<EmployeeDto> CreateAsync(EmployeeCreateRequest request);
         Task<EmployeeDto> UpdateAsync(EmployeeUpdateRequest request);

@@ -1,3 +1,4 @@
+using DevLife.Application.Commons.Interfaces.Services;
 using DevLife.Application.Modules.Employees.DTOs;
 using DevLife.Application.Modules.Employees.DTOs.Requests;
 using DevLife.Application.Modules.Employees.Interfaces.Services;
@@ -9,12 +10,13 @@ namespace DevLife.Web.Api.Modules.Employee;
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
-public class EmployeeController(IEmployeeService employeeService) : ControllerBase
+public class EmployeeController(IEmployeeService employeeService, IAuthenticatedUserService authenticatedUserService) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<List<EmployeeDto>>> GetAll()
     {
-        var response = await employeeService.GetAllAsync();
+        var companyId = authenticatedUserService.GetCompanyId();
+        var response = await employeeService.GetAllAsync(companyId);
         return Ok(response);
     }
 
