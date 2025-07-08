@@ -15,9 +15,10 @@ public class ContractService(
 
 ) : IContractService
 {
-    public async Task<List<ContractDto>> GetAllAsync()
+    public async Task<List<ContractDto>> GetAllByCompanyIdAsync()
     {
-        var result = await contractRepository.GetAllAsync();
+        var companyId = authenticatedUser.GetCompanyId();
+        var result = await contractRepository.GetAllByCompanyIdAsync(companyId);
 
         var response = (result ?? []).Select(item => new ContractDto(item)).ToList();
         return response;

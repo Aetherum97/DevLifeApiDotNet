@@ -11,7 +11,7 @@ namespace DevLife.Application.Modules.Contracts.Interfaces.Services
 {
     public interface IContractService
     {
-        Task<List<ContractDto>> GetAllAsync();
+        Task<List<ContractDto>> GetAllByCompanyIdAsync();
         Task<ContractDto> GetByIdAsync(Guid id);
         Task<ContractDto> CreateAsync(ContractCreateRequest request);
         Task<ContractDto> UpdateAsync(ContractUpdateRequest request);
