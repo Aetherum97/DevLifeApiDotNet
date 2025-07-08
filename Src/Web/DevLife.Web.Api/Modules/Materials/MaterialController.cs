@@ -29,7 +29,7 @@ namespace DevLife.Web.Api.Modules.Materials
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MaterialDto>>> GetAll()
         {
-            var dtos = await materialService.GetAllAsync();
+            var dtos = await materialService.GetAllByCompanyIdAsync();
             return Ok(dtos);
         }
 

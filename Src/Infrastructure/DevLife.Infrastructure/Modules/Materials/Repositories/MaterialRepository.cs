@@ -4,16 +4,17 @@ using DevLife.Infrastructure.Commons.Bases;
 using DevLife.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevLife.Infrastructure.Commons.Repositories
+namespace DevLife.Infrastructure.Modules.Materials.Repositories
 {
-    public class MaterialCompanyRepository(AppDbContext context) : BaseRepository<Material>(context), IMaterialRepository
+    public class MaterialRepository(AppDbContext context) : BaseRepository<Material>(context), IMaterialRepository
     {
-        public override async Task<List<Material>> GetAllAsync()
+        public async Task<List<Material>> GetAllByCompanyIdAsync(Guid companyId)
         {
             return await context.Set<Material>()
                                  .Include(m => m.CompanyMaterial)
                                  .Include(m => m.MaterialTemplate)
                                      .ThenInclude(mt => mt!.MaterialSkill)
+                                     .Where(m => m.CompanyMaterial != null && m.CompanyMaterial.CompanyId == companyId)
                                  .ToListAsync();
         }
 

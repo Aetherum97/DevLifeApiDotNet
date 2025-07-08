@@ -5,5 +5,6 @@ namespace DevLife.Application.Modules.Materials.Interfaces.Repositories
 {
     public interface IMaterialRepository : IBaseRepository<Material>
     {
+        Task<List<Material>> GetAllByCompanyIdAsync(Guid companyId);
     }
 }
